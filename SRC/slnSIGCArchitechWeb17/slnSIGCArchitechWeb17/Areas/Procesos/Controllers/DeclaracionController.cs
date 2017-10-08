@@ -50,9 +50,7 @@ namespace slnSIGCArchitechWeb17.Areas.Procesos.Controllers
 
             ViewBag.Mes = new SelectList(Helper.Llenar_Meses(), "Codigo", "Descripcion", DateTime.Now.Month);
             ViewBag.Año = new SelectList(Helper.Llenar_Años(), DateTime.Now.Year.ToString());
-
-            //ViewBag.NroOrden = new SelectList(Helper.Llenar_Años());
-
+            
             ViewBag.Mensaje = sMensaje;
             ViewBag.Error = sError;
 
