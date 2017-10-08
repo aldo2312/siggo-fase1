@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SiggoData" Class="DADeclaracionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LAP-LENOVO;Initial Catalog=SiggoData;Persist Security Info=True;User ID=usr_siggo" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString3" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=SiggoData;Persist Security Info=True;User ID=sa" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString5" Provider="System.Data.SqlClient" />
   <Function Name="dbo.SP_LISTAR_DECLARACIONES_DOCUMENTOS" Method="SP_LISTAR_DECLARACIONES_DOCUMENTOS">
     <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
     <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Int32" DbType="Int" />
@@ -54,6 +54,7 @@
     <Parameter Name="TipoRecurso" Parameter="tipoRecurso" Type="System.String" DbType="VarChar(5)" />
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Estado" Parameter="estado" Type="System.String" DbType="VarChar(1)" />
     <Parameter Name="nPag" Type="System.Int32" DbType="Int" />
     <Parameter Name="nNumxPag" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_LISTAR_DECLARACIONESResult">

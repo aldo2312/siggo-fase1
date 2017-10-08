@@ -24,7 +24,7 @@ namespace Siggo.SIGC.DataAccess
             {
                 using (DADeclaracionDataContext dc = new DADeclaracionDataContext(Globales.ConfigServidor()))
                 {
-                    var lnq_Query = dc.SP_LISTAR_DECLARACIONES(NroOrden, IdEmpresa, IdCliente, MesControl, AnhoControl, TipoRecurso, IdUsuario, IdRegistro, 1, 500);
+                    var lnq_Query = dc.SP_LISTAR_DECLARACIONES(NroOrden, IdEmpresa, IdCliente, MesControl, AnhoControl, TipoRecurso, IdUsuario, IdRegistro, EstadoRegistro, 1, 500);
                     foreach (var item in lnq_Query)
                     {
                         lstDeclaraciones.Add(new vReg_Declaracion()

@@ -6,3 +6,8 @@ D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\bin\Debug\Siggo.SI
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\bin\Debug\Siggo.SIGC.Entity.pdb
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\obj\Debug\Siggo.SIGC.Entity.dll
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\obj\Debug\Siggo.SIGC.Entity.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\bin\Debug\Siggo.SIGC.Entity.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\bin\Debug\Siggo.SIGC.Entity.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\obj\Debug\Siggo.SIGC.Entity.csproj.CoreCompileInputs.cache
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\obj\Debug\Siggo.SIGC.Entity.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\obj\Debug\Siggo.SIGC.Entity.pdb

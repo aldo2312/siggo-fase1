@@ -18,3 +18,14 @@ D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Sigg
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.csprojResolveAssemblyReference.cache
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.dll
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.DataAccess.dll.config
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.DataAccess.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.DataAccess.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Entity.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Util.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Entity.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Util.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.pdb

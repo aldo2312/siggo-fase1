@@ -8,3 +8,8 @@ D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\bin\Debug\Siggo.SIGC
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.dll
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.pdb
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.csprojResolveAssemblyReference.cache
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\bin\Debug\Siggo.SIGC.Util.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\bin\Debug\Siggo.SIGC.Util.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.csproj.CoreCompileInputs.cache
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.pdb

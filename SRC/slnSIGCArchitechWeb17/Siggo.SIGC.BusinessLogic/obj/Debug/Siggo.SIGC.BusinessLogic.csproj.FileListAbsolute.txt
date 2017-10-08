@@ -22,3 +22,16 @@ D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\S
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Debug\Siggo.SIGC.BusinessLogic.csprojResolveAssemblyReference.cache
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Debug\Siggo.SIGC.BusinessLogic.dll
 D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Debug\Siggo.SIGC.BusinessLogic.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\Siggo.SIGC.BusinessLogic.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\Siggo.SIGC.BusinessLogic.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\Siggo.SIGC.DataAccess.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\Siggo.SIGC.Entity.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\Siggo.SIGC.Util.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\Siggo.SIGC.DataAccess.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\Siggo.SIGC.DataAccess.dll.config
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\Siggo.SIGC.Entity.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Debug\Siggo.SIGC.Util.pdb
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Debug\Siggo.SIGC.BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Debug\Siggo.SIGC.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Debug\Siggo.SIGC.BusinessLogic.dll
+C:\Users\ajrey\Documents\GitHub\siggo-fase1\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Debug\Siggo.SIGC.BusinessLogic.pdb

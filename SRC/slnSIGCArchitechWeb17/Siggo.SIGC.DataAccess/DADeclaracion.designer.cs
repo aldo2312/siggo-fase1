@@ -33,7 +33,7 @@ namespace Siggo.SIGC.DataAccess
     #endregion
 		
 		public DADeclaracionDataContext() : 
-				base(global::Siggo.SIGC.DataAccess.Properties.Settings.Default.SiggoDataConnectionString3, mappingSource)
+				base(global::Siggo.SIGC.DataAccess.Properties.Settings.Default.SiggoDataConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -86,9 +86,9 @@ namespace Siggo.SIGC.DataAccess
         }
 
         [global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_LISTAR_DECLARACIONES")]
-		public ISingleResult<SP_LISTAR_DECLARACIONESResult> SP_LISTAR_DECLARACIONES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NroOrden", DbType="VarChar(10)")] string nroOrden, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contratista", DbType="VarChar(5)")] string contratista, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cliente", DbType="VarChar(5)")] string cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mes", DbType="Char(2)")] string mes, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Anho", DbType="Char(4)")] string anho, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoRecurso", DbType="VarChar(5)")] string tipoRecurso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="VarChar(10)")] string idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="VarChar(10)")] string idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> nPag, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> nNumxPag)
+		public ISingleResult<SP_LISTAR_DECLARACIONESResult> SP_LISTAR_DECLARACIONES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NroOrden", DbType="VarChar(10)")] string nroOrden, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contratista", DbType="VarChar(5)")] string contratista, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cliente", DbType="VarChar(5)")] string cliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mes", DbType="Char(2)")] string mes, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Anho", DbType="Char(4)")] string anho, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoRecurso", DbType="VarChar(5)")] string tipoRecurso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="VarChar(10)")] string idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="VarChar(10)")] string idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estado", DbType="VarChar(1)")] string estado, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> nPag, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> nNumxPag)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nroOrden, contratista, cliente, mes, anho, tipoRecurso, idUsuario, idRegistro, nPag, nNumxPag);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nroOrden, contratista, cliente, mes, anho, tipoRecurso, idUsuario, idRegistro, estado, nPag, nNumxPag);
 			return ((ISingleResult<SP_LISTAR_DECLARACIONESResult>)(result.ReturnValue));
 		}
 	}
