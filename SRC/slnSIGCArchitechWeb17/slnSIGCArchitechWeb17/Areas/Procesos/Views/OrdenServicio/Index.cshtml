@@ -1,0 +1,127 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Procesos.Models.OrdenModel
+@{
+    ViewBag.Title = "Ordenes de Servicio";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Ordenes de Servicio</h2>
+
+@*@if (Convert.ToString(Session["UsuarioInterno"]) != "Si")
+{
+    <div class="SubTitulo">Lista de Ordenes de Servicio pertenecientes a la empresa: @Session["NombreEmpresa"]</div>
+}
+else
+{
+    <div class="SubTitulo">Lista de Ordenes de Servicio</div>    
+}*@
+
+@using (Html.BeginForm(null, null, FormMethod.Get, null))
+{
+    if (Session["TipoEmpresaSiggo"].ToString() != "CONTRATISTA")
+    {        
+        <div id="newReg">
+            @Html.ActionLink("Crear Orden de Servicio", "EditarOrden", "OrdenServicio", new { area = "Procesos", Accion = "Editar" }, null)
+        </div>
+    }
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Orden Servicio")</td>
+                <td>@Html.TextBox("NroOrden", null, new { style = "width:120px;" }) </td>
+                <td>@Html.Label("Cliente")</td>
+                <td>@Html.DropDownList("Clientes", null, "(Todos)", new { style = "width:250px;" })</td>
+                <td>@Html.Label("Contratista")</td>
+                <td>@Html.DropDownList("Contratas", null, "(Todos)", new { style = "width:250px;" })</td>                
+            </tr>
+            <tr>
+                <td>@Html.Label("Fecha Reg Desde")</td>
+                <td>@Html.TextBoxFor(m => m.fDesde, new { @class = "datepicker", style = "width:80px;", @readonly = true })</td>
+                <td>@Html.Label("Hasta")</td>
+                <td>@Html.TextBoxFor(m => m.fHasta, new { @class = "datepicker", style = "width:80px;", @readonly = true })</td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Buscar" />
+        <input type="button" value="Limpiar" onclick="Limpiar()" />
+    </fieldset>
+    <br />
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+    <br />
+}
+@if (ViewBag.Error != null)
+{
+    <div id="Error">@ViewBag.Error</div>
+    <br />
+}
+
+@if (Model.lRegistrosOrdenes != null)
+{
+    if (Model.lRegistrosOrdenes.Count > 0)
+    {
+        WebGrid wbOrdenes = new WebGrid(Model.lRegistrosOrdenes, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+        if (wbOrdenes.SelectedIndex < 0)
+        {
+            wbOrdenes.SelectedIndex = 0;
+        }
+        var gridColumnas = new List<WebGridColumn>();
+        gridColumnas.Add(wbOrdenes.Column("NroOrden", header: "Nro.Orden", format: (item) => item.GetSelectLink(item.NroOrden)));
+        gridColumnas.Add(wbOrdenes.Column("CodigoCliente", header: "IdCliente", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("NombreCliente", header: "Cliente", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("CodigoContratista", header: "IdContrata", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("NombreContratista", header: "Contratista", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("Maker", header: "Usuario", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("FechaDesde", header: "F.Ctrl.Inicio", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("FechaHasta", header: "F.Ctrl.Fin", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("Estado", header: "Estado", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+        if (Session["TipoEmpresaSiggo"].ToString() != "CONTRATISTA")
+        {
+            gridColumnas.Add(wbOrdenes.Column("Editar", header: "", format: (item) => @Ajax.ActionLink("Editar", "EditarOrden", "OrdenServicio", new { area = "Procesos", IdEmpresa = item.IdEmpresa, NroOrden = item.NroOrden, Accion = "Editar" }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+        }
+        else
+        {
+            gridColumnas.Add(wbOrdenes.Column("Detalle", header: "", format: (item) => @Ajax.ActionLink("Ver Detalle", "EditarOrden", "OrdenServicio", new { area = "Procesos", IdEmpresa = item.IdEmpresa, NroOrden = item.NroOrden, Accion = "Consultar" }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+        }
+
+        @wbOrdenes.GetHtml(
+        rowStyle: "webgrid-row-style",
+        selectedRowStyle: "webgrid-selected-row",
+        htmlAttributes: new { id = "MainTable" },
+
+        mode: WebGridPagerModes.All,
+        firstText: "<< Primera",
+        previousText: "< Anterior",
+        nextText: "Siguiente >",
+        lastText: "Última >>",
+        columns: wbOrdenes.Columns(gridColumnas.ToArray())
+    );
+
+        if (wbOrdenes.HasSelection)
+        {
+            Html.RenderAction("DetallePeriodos", "OrdenServicio", new { area = "Procesos", Cliente = wbOrdenes.SelectedRow["CodigoCliente"], Contratista = wbOrdenes.SelectedRow["CodigoContratista"].ToString(), NroOrden = wbOrdenes.SelectedRow["NroOrden"].ToString() });
+        }
+
+    }
+    else
+    {
+            <div id="No">No existen ordenes registradas</div>
+        }
+    }
+
+    <script type="text/javascript">
+        function Limpiar() {
+            var txt = document.getElementById('NroOrden'); txt.value = "";
+            var cbo = document.getElementById('Clientes'); cbo[0].selected = true;
+            var cbo = document.getElementById('Contratas'); cbo[0].selected = true;            
+        }
+
+        $(".datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+    </script>

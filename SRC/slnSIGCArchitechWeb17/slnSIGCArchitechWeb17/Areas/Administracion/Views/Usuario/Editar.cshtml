@@ -1,0 +1,127 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Administracion.Models.UsuarioWebModel
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+@Html.Hidden("myUrl", Url.Action("Index", "Usuario"))
+
+@if (Model.NuevoRegistro)
+{
+    <h2>Nuevo Usuario</h2>
+}
+else
+{
+    <h2>Editar Usuario : @Model.IdUsuario</h2>
+} 
+
+<div class="Titulo">
+    Empresa: @Model.NombreEmpresaSel
+</div>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.NuevoRegistro)
+    @Html.HiddenFor(m => m.IdEmpresaSel)
+    @Html.HiddenFor(m => m.NombreEmpresaSel)
+    @Html.HiddenFor(m => m.IdEmpresa)
+    @Html.HiddenFor(m => m.TipoEmpresaSiggo)
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.LabelFor(m => m.IdUsuario) *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.IdUsuario, new { style = "width:80px;", disabled = "true", maxlength = 10 })
+                    @Html.HiddenFor(m => m.IdUsuario)
+                    @Html.ValidationMessageFor(m => m.IdUsuario)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.NombreUsuario) *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.NombreUsuario, new { style = "width:350px;", maxlength = 40 })
+                    @Html.ValidationMessageFor(m => m.NombreUsuario)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.ApellidoPaternoUsuario) *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.ApellidoPaternoUsuario, new { style = "width:450px;", maxlength = 60 })
+                    @Html.ValidationMessageFor(m => m.ApellidoPaternoUsuario)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.ApellidoMaternoUsuario) *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.ApellidoMaternoUsuario, new { style = "width:450px;", maxlength = 60 })
+                    @Html.ValidationMessageFor(m => m.ApellidoMaternoUsuario)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.CorreoElectronico)</td>
+                <td>
+                    @Html.TextBoxFor(m => m.CorreoElectronico, new { style = "width:350px;", maxlength = 50 })
+                    @Html.ValidationMessageFor(m => m.CorreoElectronico)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Contrasenha)</td>
+                <td>
+                    @Html.PasswordFor(m => m.Contrasenha, new { value = Model.Contrasenha, style = "width:150px;", maxlength = 20 })
+                    @Html.ValidationMessageFor(m => m.Contrasenha)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.IdRol) *</td>
+                <td>
+                    @Html.DropDownListFor(m => m.IdRol, new SelectList(Model.lRoles, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:120px;" })
+                    @Html.ValidationMessageFor(m => m.IdRol)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.RecibeNotificaciones) </td>
+                <td>
+                    @Html.DropDownListFor(m => m.RecibeNotificaciones, new SelectList(Model.lRecibeNotificaciones, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:120px;" })                    
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Estado Registro")</td>
+                <td>@Html.TextBoxFor(m => m.EstadoDescripcion, new { style = "width:150px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fecha Registro")</td>
+                <td>@Html.TextBoxFor(m => m.FechaMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Hora Registro")</td>
+                <td>@Html.TextBoxFor(m => m.HoraMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Registrado Por")</td>
+                <td>@Html.TextBoxFor(m => m.Maker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <div>
+        <input type="submit" value="Grabar" />
+        <input type="button" value="Cancelar" onclick="return Cancelar();" />
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script type="text/javascript">
+    function Cancelar() {
+        var IdEmpresaSel = $('#IdEmpresaSel').val();
+        var NombreEmpresaSel = $('#NombreEmpresaSel').val();
+        var TipoEmpresaSiggo = $('#TipoEmpresaSiggo').val();
+        var url = $("#myUrl").val();
+        window.location.href = url + '?IdEmpresaSel=' + IdEmpresaSel + '&NombreEmpresaSel=' + NombreEmpresaSel + '&TipoEmpresaSiggo=' + TipoEmpresaSiggo;
+    }
+</script>

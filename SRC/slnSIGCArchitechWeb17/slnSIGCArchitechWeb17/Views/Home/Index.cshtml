@@ -1,0 +1,65 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Procesos.Models.OrdenModel
+
+@{
+    ViewBag.Title = "Página Principal";
+}
+
+<div class="Titulo">
+    <h1>Bienvenido</h1>
+    <p class="lead">SIGC es la aplicación web que le permitirá gestionar información documental de las contratas/subcontratas de las empresas usuarias.</p>    
+</div>
+@if (Convert.ToString(Session["UsuarioInterno"]) != "Si")
+{
+    <div class="SubTitulo">Lista de Ordenes de Servicio pertenecientes a la empresa: @Session["NombreEmpresa"]</div>
+}
+else
+{
+    <div class="SubTitulo">Lista de Ordenes de Servicio</div>
+}
+<br />
+@if (Model.lRegistrosOrdenes != null)
+{
+    if (Model.lRegistrosOrdenes.Count > 0)
+    {
+        WebGrid wbOrdenes = new WebGrid(Model.lRegistrosOrdenes, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+        if (wbOrdenes.SelectedIndex < 0)
+        {
+            wbOrdenes.SelectedIndex = 0;
+        }
+        var gridColumnas = new List<WebGridColumn>();
+        gridColumnas.Add(wbOrdenes.Column("NroOrden", header: "Nro.Orden", format: (item) => item.GetSelectLink(item.NroOrden)));
+        gridColumnas.Add(wbOrdenes.Column("NombreCliente", header: "Cliente", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("NombreContratista", header: "Contratista", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("Maker", header: "Usuario", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("FechaDesde", header: "F.Ctrl.Inicio", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("FechaHasta", header: "F.Ctrl.Fin", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("Estado", header: "Estado", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+        gridColumnas.Add(wbOrdenes.Column("Detalle", header: "", format: (item) => @Ajax.ActionLink("Ver Detalle", "EditarOrden", "OrdenServicio", new { area = "Procesos", IdEmpresa = item.IdEmpresa, NroOrden = item.NroOrden, Accion = "Consultar" }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+        //gridColumnas.Add(wbOrdenes.Column("Declarar", header: "", format: (item) => @Ajax.ActionLink("Declarar", "DeclararOrden", "OrdenServicio", new { area = "Procesos", IdEmpresa = item.IdEmpresa, NroOrden = item.NroOrden }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+
+
+        @wbOrdenes.GetHtml(
+            rowStyle: "webgrid-row-style",
+            selectedRowStyle: "webgrid-selected-row",
+            htmlAttributes: new { id = "MainTable" },
+
+            mode: WebGridPagerModes.All,
+            firstText: "<< Primera",
+            previousText: "< Anterior",
+            nextText: "Siguiente >",
+            lastText: "Última >>",
+            columns: wbOrdenes.Columns(gridColumnas.ToArray())
+        );
+
+        //if (wbOrdenes.HasSelection)
+        //{
+        //    Html.RenderAction("Usuarios", "Cliente", new { area = "Registros", IdEmpresaSel = wbOrdenes.SelectedRow["IdEmpresa"], NombreEmpresaSel = wbOrdenes.SelectedRow["RazonSocial"].ToString(), TipoEmpresaSiggo = "CLIENTE" });
+        //}
+
+    }
+    else
+    {
+        <div id="No">No existen ordenes registradas</div>
+    }
+}

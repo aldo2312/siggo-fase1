@@ -1,0 +1,61 @@
+﻿@model slnSIGCArchitechWeb17.Models.TopMenuWebModel
+<ul id="menu" class="nav">
+
+    @if (Model.lOpcionesMenu != null)
+    {
+        foreach (var item in Model.lOpcionesMenu.Where(p => p.PreMenu == 0))
+        {
+            if (Model.lOpcionesMenu.Where(s1 => s1.PreMenu == item.IdMenu) != null)
+            {
+                <li>                    
+                    @if (item.Grupo)
+                    {
+                        <a href="#">
+                            @item.DescripcionMenu
+                            <span class="flecha">&#9660;</span>
+                        </a>
+                    }
+                    else
+                    {
+                        @Html.ActionLink(item.DescripcionMenu, item.ActionResult, item.Controlador)
+                    }
+
+                    <ul>
+                        @foreach (var sub1 in Model.lOpcionesMenu.Where(s1 => s1.PreMenu == item.IdMenu))
+                        {
+                            if (Model.lOpcionesMenu.Where(s2 => s2.PreMenu == sub1.IdMenu) != null)
+                            {
+                                if (sub1.Grupo)
+                                {
+                                    <li class="submenu">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        @sub1.DescripcionMenu
+                                        <ul>
+                                            @foreach (var sub2 in Model.lOpcionesMenu.Where(s2 => s2.PreMenu == sub1.IdMenu))
+                                            {
+                                                <li>@Html.ActionLink(sub2.DescripcionMenu, sub2.ActionResult, sub2.Controlador, new { Area = sub1.DescripcionMenu }, null)</li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink(sub1.DescripcionMenu, sub1.ActionResult, sub1.Controlador, new { Area = item.DescripcionMenu }, null)</li>
+                                }
+
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink(sub1.DescripcionMenu, sub1.ActionResult, sub1.Controlador, new { Area = item.DescripcionMenu }, null)</li>
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li>@Html.ActionLink(item.DescripcionMenu + "*-*", item.ActionResult, item.Controlador, new { Area = "" }, null)</li>
+            }
+        }
+    }
+</ul>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SiggoData" Class="DARequisitoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAP-LENOVO;Initial Catalog=SiggoData;Persist Security Info=True;User ID=usr_siggo" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString3" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_MANT_REG_REQUISITO_RECURSO" Method="SP_MANT_REG_REQUISITO_RECURSO">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdRecurso" Parameter="idRecurso" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoDocumento" Parameter="idTipoDocumento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EsRequerido" Parameter="esRequerido" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NecesitaAdjunto" Parameter="necesitaAdjunto" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Orden" Parameter="orden" Type="System.Int32" DbType="Int" />
+    <Parameter Name="RegistradoPor" Parameter="registradoPor" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_OBTENER_LISTA_REQUISITOS" Method="SP_OBTENER_LISTA_REQUISITOS">
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="TipoRecurso" Parameter="tipoRecurso" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="SP_OBTENER_LISTA_REQUISITOSResult">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoServicio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_OBTENER_DATOS_REQUISITO_DATO" Method="SP_OBTENER_DATOS_REQUISITO_DATO">
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipodocumento" Parameter="idTipodocumento" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_OBTENER_DATOS_REQUISITO_DATOResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoServicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoDocumento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdDato" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionDato" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Orden" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FECMAKER" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="HoraRegistro" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MAKER" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_MANT_REG_REQUISITO_DATO" Method="SP_MANT_REG_REQUISITO_DATO">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoDocumento" Parameter="idTipoDocumento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdDato" Parameter="idDato" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Orden" Parameter="orden" Type="System.Int32" DbType="Int" />
+    <Parameter Name="RegistradoPor" Parameter="registradoPor" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_MANT_REG_REQUISITO" Method="SP_MANT_REG_REQUISITO">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoDocumento" Parameter="idTipoDocumento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TipoRecurso" Parameter="tipoRecurso" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="DescripcionRequisito" Parameter="descripcionRequisito" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="DiasTolerancia" Parameter="diasTolerancia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DiasNotificacion" Parameter="diasNotificacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Periodicidad" Parameter="periodicidad" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="HabilitaPago" Parameter="habilitaPago" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="HabilitaAcceso" Parameter="habilitaAcceso" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="DardeBaja" Parameter="dardeBaja" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="FechaVigenciaDesde" Parameter="fechaVigenciaDesde" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaVigenciaHasta" Parameter="fechaVigenciaHasta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="RegistradoPor" Parameter="registradoPor" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_OBTENER_DATOS_REQUISITO" Method="SP_OBTENER_DATOS_REQUISITO">
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Identificador" Parameter="identificador" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_OBTENER_DATOS_REQUISITOResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoServicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoDocumento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TipoRecurso" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionRequisito" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="DiasTolerancia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DiasNotificacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Periodicidad" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="HabilitaPago" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HabilitaAcceso" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DardeBaja" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FechaVigenciaDesde" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaVigenciaHasta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Accion" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaRegistro" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HoraRegistro" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="RegistradoPor" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FECMAKER" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="HoraRegistro1" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="MAKER" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_LISTAR_REQUISITOS" Method="SP_LISTAR_REQUISITOS">
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Identificador" Parameter="identificador" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoRecurso" Parameter="tipoRecurso" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="IDUSUARIO" Parameter="iDUSUARIO" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_LISTAR_REQUISITOSResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Contratista" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoDocumento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionRequisito" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoRiesgo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoRecurso" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionTipoRecurso" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdTipoServicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ESTADO" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ACCION" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FECHAREGISTRO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HORAREGISTRO" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="REGISTRADOPOR" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

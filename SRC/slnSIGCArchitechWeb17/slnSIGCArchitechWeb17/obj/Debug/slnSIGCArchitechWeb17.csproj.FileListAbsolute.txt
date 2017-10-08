@@ -1,0 +1,152 @@
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\ApplicationInsights.config
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csc.exe
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csc.exe.config
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csc.rsp
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csi.exe
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csi.rsp
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.AppContext.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.Collections.Immutable.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.Diagnostics.StackTrace.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.IO.FileSystem.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.IO.FileSystem.Primitives.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\vbc.exe
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\vbc.exe.config
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\vbc.rsp
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\VBCSCompiler.exe
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\VBCSCompiler.exe.config
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\slnSIGCArchitechWeb17.dll.config
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\slnSIGCArchitechWeb17.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\slnSIGCArchitechWeb17.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Antlr3.Runtime.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.Web.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.WindowsServer.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.ApplicationInsights.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.Web.Infrastructure.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Newtonsoft.Json.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Helpers.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Mvc.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Optimization.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Razor.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.Deployment.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.Razor.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\WebGrease.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Helpers.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Mvc.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Optimization.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Razor.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.Deployment.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.Razor.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Antlr3.Runtime.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Newtonsoft.Json.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.ApplicationInsights.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.WindowsServer.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.Web.xml
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\obj\Debug\slnSIGCArchitechWeb17.csprojResolveAssemblyReference.cache
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\obj\Debug\slnSIGCArchitechWeb17.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\obj\Debug\slnSIGCArchitechWeb17.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.Util.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.Util.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.BusinessLogic.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.Entity.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.DataAccess.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.BusinessLogic.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.Entity.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.DataAccess.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.DataAccess.dll.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\ApplicationInsights.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csc.exe
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csc.exe.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csc.rsp
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csi.exe
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\csi.rsp
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.AppContext.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.Collections.Immutable.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.IO.FileSystem.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\System.Reflection.Metadata.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\vbc.exe
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\vbc.exe.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\vbc.rsp
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\VBCSCompiler.exe
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\roslyn\VBCSCompiler.exe.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\slnSIGCArchitechWeb17.dll.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\slnSIGCArchitechWeb17.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\slnSIGCArchitechWeb17.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Antlr3.Runtime.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.DependencyCollector.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.Web.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.WindowsServer.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.ApplicationInsights.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.Web.Infrastructure.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Newtonsoft.Json.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.BusinessLogic.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.Entity.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.Util.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Helpers.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Mvc.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Optimization.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Razor.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.Deployment.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.Razor.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\WebGrease.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.DataAccess.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.BusinessLogic.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.Entity.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.Util.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Helpers.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Mvc.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Optimization.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.Razor.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.Deployment.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\System.Web.WebPages.Razor.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Antlr3.Runtime.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Newtonsoft.Json.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.ApplicationInsights.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.DependencyCollector.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.WindowsServer.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Microsoft.AI.Web.xml
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.DataAccess.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\bin\Siggo.SIGC.DataAccess.dll.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\obj\Debug\slnSIGCArchitechWeb17.csprojResolveAssemblyReference.cache
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\obj\Debug\slnSIGCArchitechWeb17.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\slnSIGCArchitechWeb17\obj\Debug\slnSIGCArchitechWeb17.pdb

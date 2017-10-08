@@ -1,0 +1,814 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Procesos.Models.OrdenModel
+@{
+    ViewBag.Title = "Orden Detalle";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+@Html.Hidden("myUrl", Url.Action("Index", "OrdenServicio"))
+<h2>Orden de Servicio</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("myOpcion", Model.NuevoRegistro, new { @id = "myOpcion" })
+    <fieldset>
+        <legend>Datos de la Orden</legend>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.LabelFor(m => m.NroOrden) *</td>
+                <td>
+                    @if (Model.NuevoRegistro)
+                    {
+                        @Html.TextBoxFor(m => m.NroOrden, new { @Value = "??????????", style = "width:120px;", disabled = "true" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.NroOrden, new { style = "width:120px;", disabled = "true" })
+                    }
+                    @Html.HiddenFor(m => m.NroOrden)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Descripcion)</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Descripcion, new { style = "width:350px;", maxlength = 30 })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Empresa")</td>
+                <td>
+                    @if (Model.NuevoRegistro)
+                    {
+                        @Html.DropDownListFor(m => m.IdEmpresa, new SelectList(Model.lEmpresas, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:450px;" })
+                    }
+                    else
+                    {
+                       @Html.DropDownListFor(m => m.IdEmpresa, new SelectList(Model.lEmpresas, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:450px;", disabled = "true" })
+                    }
+                    @Html.HiddenFor(m => m.IdEmpresa)
+                    @Html.ValidationMessageFor(m => m.IdEmpresa)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fec. Real Inicio")</td>
+                <td>
+                    @Html.TextBoxFor(m => m.FecRealInicio, new { @class = "datepicker", style = "width:100px;", maxlength = 10 })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fec. Real Fin")</td>
+                <td>
+                    @Html.TextBoxFor(m => m.FecRealFin, new { @class = "datepicker", style = "width:100px;", maxlength = 10 })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fec. Control Inicio")</td>
+                <td>
+                    @Html.TextBoxFor(m => m.FecControlInicio, new { @class = "datepicker", style = "width:100px;", maxlength = 10 })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fec. Control Fin")</td>
+                <td>
+                    @Html.TextBoxFor(m => m.FecControlFin, new { @class = "datepicker", style = "width:100px;", maxlength = 10 })
+                </td>
+            </tr>
+        </table>
+        
+        <br />
+        <div id="tabsError"></div>
+        <br />
+
+        <div id="tabs">
+            <ul>
+                <li><a href="#localizaciones"><span>Localizaciones</span></a></li>
+                <li><a href="#areas"><span>Areas</span></a></li>
+                <li><a href="#empresas"><span>Contratistas</span></a></li>
+            </ul>
+            <div id="localizaciones">
+                <div id="divLocalizacion-Edit">
+                    <fieldset>
+                        <h4>Agregar Localizaciones</h4>
+                        <table class="tablaForm">
+                            <tr>
+                                <td>Ubicación:</td>
+                                <td>
+                                    <select id="itemSede" style="width:250px;" />
+                                    <span class="errorD">Sede Obligatorio</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" id="addSede" value="Agregar" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="Sedes" class="tablecontainer">
+                            @*@if (Model.lRegistrosSedes != null)
+                            {
+                                <table class="tbl" id="tblSedes">
+                                    <thead><tr><th>IdSede</th><th>Sede</th><th></th></tr></thead>
+                                    <tbody>
+                                        @foreach (var item in Model.lRegistrosSedes)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayTextFor(i => item.CodigoSede)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayTextFor(i => item.DescripcionSede)
+                                            </td>
+                                            <td>
+                                                <a href="#">Remove</a>
+                                            </td>
+
+                                        </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            }*@
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div id="areas">
+                <div id="divArea-Edit">
+                    <fieldset>
+                        <h4>Agregar Areas</h4>
+                        <table class="tablaForm">
+                            <tr>
+                                <td>Seleccione Area</td>
+                                <td>
+                                    <select id="itemArea" style="width:250px;" />
+                                    <span class="errorD">Area Obligatorio</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" id="addArea" value="Agregar" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="Areas" class="tablecontainer">
+                            @*@if (Model.lRegistrosAreas != null)
+                            {
+                                <table class="tbl" id="tblAreas">
+                                    <thead><tr><th>IdArea</th><th>Area</th><th></th></tr></thead>
+                                    <tbody>
+                                        @foreach (var item in Model.lRegistrosAreas)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayTextFor(i => item.CodigoDpto)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayTextFor(i => item.DescripcionDpto)
+                                                </td>
+                                                <td>
+                                                    <a href="#">Remove</a>
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            }*@
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div id="empresas">
+                <div id="divEmpresa-Edit">
+                    <fieldset>
+                        <h4>Agregar Contratas / SubContrata</h4>
+                        <table class="tablaForm">
+                            <tr>
+                                <td>Contratista:</td>
+                                <td>
+                                    <select id="itemContrata" style="width:450px;" />
+                                    <span class="errorD">Contrata Obligatorio</span>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <td>SubContratista de:</td>
+                                <td>
+                                    <select id="itemSubContrata" style="width:450px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" id="addCont" value="Agregar" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="Empresas" class="tablecontainer">
+                            @*@if (Model.lRegistrosContratas != null)
+                            {
+                                <table class="tbl" id="tblContratas">
+                                    <thead><tr><th>Contratista</th><th>SubContratista</th><th></th></tr></thead>
+                                    <tbody>
+                                        @foreach (var item in Model.lRegistrosContratas)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayTextFor(i => item.DescContrata)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayTextFor(i => item.DescSubContrata)
+                                                </td>
+                                                <td>
+                                                    <a href="#">Remove</a>
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            }*@
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <div>
+            @if (!String.IsNullOrEmpty(Model.AccionRealizada))
+            {
+                if (Model.AccionRealizada != "Consultar")
+                {
+                    <input id="btnEnviar" type="submit" name="Generar" value="Generar Orden de Servicio" />
+                }
+            }            
+            <input type="button" value="Cancelar" onclick="history.back()" />
+        </div>
+    </fieldset>
+}
+
+<script type="text/javascript">
+
+    var sedesItems = [];
+    var areasItems = [];
+    var empresasItems = [];
+
+    $(document).ready(function () {
+        //var sedesItems = [];
+        //var areasItems = [];
+        //var empresasItems = [];
+
+        loadListados();
+        //alert($('#myOpcion').val());
+
+        ObtenerSedes();
+        ObtenerAreas();
+        ObtenerContratas();
+
+        console.log(sedesItems);
+        console.log(areasItems);
+        console.log(empresasItems);
+
+        //#region Sedes
+
+        //Add button click function
+        $('#addSede').click(function () {
+            //Check validation of order item
+            var isValidItem = true;
+
+            if ($('#itemSede option:selected').text().trim() == '') {
+                isValidItem = false;
+                $('#itemSede').siblings('span.errorD').css('visibility', 'visible');
+                console.log('cambia estilo');
+            }
+            else if ($('#itemSede').val().trim() == '') {
+                isValidItem = false;
+                $('#itemSede').siblings('span.errorD').css('visibility', 'visible');
+                console.log('cambia estilo');
+            }
+            else {
+                $('#itemSede').siblings('span.errorD').css('visibility', 'hidden');
+            }
+            if ($('#itemSede option:selected').text().trim() != '') {
+                var codigo = $('#itemSede').val().trim();
+                var Existe = false;
+                for (var i = 0; i < sedesItems.length; i++) {
+                    if (sedesItems[i].CodigoSede == codigo) {
+                        Existe = true;
+                        break;
+                    }
+                }
+                if (Existe == true) {
+                    alert("La Sede Seleccionada [" + $('#itemSede option:selected').text().trim() + "] ya ha sido ingresado. Verificar");
+                    isValidItem = false;
+                }
+            }
+
+            //Add item to list if valid
+            if (isValidItem) {
+                sedesItems.push({
+                    IdEmpresa: "",
+                    NroOrden: "",
+                    CodigoSede: $('#itemSede').val().trim(),
+                    DescripcionSede: $('#itemSede option:selected').text().trim()
+                });
+
+                //Clear fields
+                $('#itemSede').val('');
+                console.log(sedesItems);
+            }
+            //populate order items
+            GeneratedSedesItemsTable();
+
+        });
+        //function for show added items in table
+        function GeneratedSedesItemsTable() {
+            if (sedesItems.length > 0) {
+                var $table = $('<table/>');
+                $table.append('<thead><tr><th>IdSede</th><th>Sede</th><th></th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(sedesItems, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.CodigoSede));
+                    $row.append($('<td/>').html(val.DescripcionSede));
+                    var $remove = $('<a href="#">Quitar</a>');
+                    $remove.click(function (e) {
+                        e.preventDefault();
+                        sedesItems.splice(i, 1);
+                        GeneratedSedesItemsTable();
+                    });
+                    $row.append($('<td/>').html($remove));
+                    $tbody.append($row);
+                });
+                $table.append($tbody);
+                $('#Sedes').html($table);
+            } else {
+                $('#Sedes').html('');
+            }
+        }
+
+        //#endregion
+
+        //#region Areas
+
+        //Add button click function
+        $('#addArea').click(function () {
+            //Check validation of order item
+            var isValidItem = true;
+
+            if ($('#itemArea option:selected').text().trim() == '') {
+                isValidItem = false;
+                $('#itemArea').siblings('span.errorD').css('visibility', 'visible');
+                console.log('cambia estilo');
+            }
+            else if ($('#itemArea').val().trim() == '') {
+                isValidItem = false;
+                $('#itemArea').siblings('span.errorD').css('visibility', 'visible');
+                console.log('cambia estilo');
+            }
+            else {
+                $('#itemArea').siblings('span.errorD').css('visibility', 'hidden');
+            }
+            if ($('#itemArea option:selected').text().trim() != '') {
+                var codigo = $('#itemArea').val().trim();
+                var Existe = false;
+                for (var i = 0; i < areasItems.length; i++) {
+                    if (areasItems[i].CodigoDpto == codigo) {
+                        Existe = true;
+                        break;
+                    }
+                }
+                if (Existe == true) {
+                    alert("El área Seleccionada [" + $('#itemArea option:selected').text().trim() + "] ya ha sido ingresado. Verificar");
+                    isValidItem = false;
+                }
+            }
+
+            //Add item to list if valid
+            if (isValidItem) {
+                areasItems.push({
+                    IdEmpresa: "",
+                    NroOrden: "",
+                    CodigoDpto: $('#itemArea').val().trim(),
+                    DescripcionDpto: $('#itemArea option:selected').text().trim()
+                });
+
+                //Clear fields
+                $('#itemArea').val('');
+            }
+            //populate order items
+            GeneratedAreasItemsTable();
+
+        });
+        //function for show added items in table
+        function GeneratedAreasItemsTable() {
+            if (areasItems.length > 0) {
+                var $table = $('<table/>');
+                $table.append('<thead><tr><th>IdArea</th><th>Area</th><th></th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(areasItems, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.CodigoDpto));
+                    $row.append($('<td/>').html(val.DescripcionDpto));
+                    var $remove = $('<a href="#">Quitar</a>');
+                    $remove.click(function (e) {
+                        e.preventDefault();
+                        areasItems.splice(i, 1);
+                        GeneratedAreasItemsTable();
+                    });
+                    $row.append($('<td/>').html($remove));
+                    $tbody.append($row);
+                });
+                $table.append($tbody);
+                $('#Areas').html($table);
+            } else {
+                $('#Areas').html('');
+            }
+        }
+
+        //#endregion
+
+         //#region Contratas
+
+        //Add button click function
+        $('#addCont').click(function () {
+            //Check validation of order item
+            var isValidItem = true;
+
+            if ($('#itemContrata option:selected').text().trim() == '') {
+                isValidItem = false;
+                $('#itemContrata').siblings('span.errorD').css('visibility', 'visible');
+                console.log('cambia estilo');
+            }
+            else if ($('#itemContrata').val().trim() == '') {
+                isValidItem = false;
+                $('#itemContrata').siblings('span.errorD').css('visibility', 'visible');
+                console.log('cambia estilo');
+            }
+            else {
+                $('#itemContrata').siblings('span.errorD').css('visibility', 'hidden');
+            }
+
+            if ($('#itemContrata option:selected').text().trim() != '') {
+                var codigo = $('#itemContrata').val().trim() + "-" + $('#itemSubContrata').val().trim();
+                var Existe = false;
+                for (var i = 0; i < empresasItems.length; i++) {
+                    if (empresasItems[i].IdContrata + "-" + empresasItems[i].IdSubContrata == codigo) {
+                        Existe = true;
+                        break;
+                    }
+                }
+                if (Existe == true) {
+                    alert("La empresa Seleccionada [" + $('#itemContrata option:selected').text().trim() + "] ya ha sido ingresado. Verificar");
+                    isValidItem = false;
+                }
+            }
+
+            //Add item to list if valid
+            if (isValidItem) {
+                empresasItems.push({
+                    IdEmpresa: "",
+                    NroOrden: "",
+                    IdContrata: $('#itemContrata').val().trim(),
+                    DescContrata: $('#itemContrata option:selected').text().trim(),
+                    IdSubContrata: $('#itemSubContrata').val().trim(),
+                    DescSubContrata: $('#itemSubContrata option:selected').text().trim()
+                });
+
+                //Clear fields
+                $('#itemContrata').val('');
+                $('#itemSubContrata').val('');
+
+            }
+            //populate order items
+            GeneratedEmpresasItemsTable();
+
+        });
+        //function for show added items in table
+        function GeneratedEmpresasItemsTable() {
+            if (empresasItems.length > 0) {
+                var $table = $('<table/>');
+                $table.append('<thead><tr><th>Contratista</th><th>SubContratista</th><th></th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(empresasItems, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.DescContrata));
+                    $row.append($('<td/>').html(val.DescSubContrata));
+                    var $remove = $('<a href="#">Quitar</a>');
+                    $remove.click(function (e) {
+                        e.preventDefault();
+                        empresasItems.splice(i, 1);
+                        GeneratedEmpresasItemsTable();
+                    });
+                    $row.append($('<td/>').html($remove));
+                    $tbody.append($row);
+                });
+                $table.append($tbody);
+                $('#Empresas').html($table);
+            } else {
+                $('#Empresas').html('');
+            }
+        }
+
+        $("#itemContrata").change(function () {
+            ObtenerSubContratas();
+        })
+
+        //#endregion
+
+        //Save button click function
+        $('#btnEnviar').click(function () {
+
+            var $IsSend = false;
+
+            //validation of order
+            var pattern = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+            var isAllValid = true;
+            $('#tabsError').html('');
+
+            if ($('#Descripcion').val().trim() == '') {
+                $('#tabsError').html('<span style="color:red;">Ingrese una Descripción</span>');
+                isAllValid = false;
+                return false;
+            }
+
+            if ($('#IdEmpresa').val().trim() == '') {
+                $('#tabsError').html('<span style="color:red;">Seleccione una Empresa Cliente</span>');
+                isAllValid = false;
+                return false;
+            }
+
+            if (!pattern.test($('#FecRealInicio').val().trim())) {
+                $('#tabsError').html('<span style="color:red;">Ingrese una Fecha Real Inicial válida</span>');
+                $('#FecRealInicio').focus();
+                isAllValid = false;
+                return false;
+            }
+
+            if (!pattern.test($('#FecRealFin').val().trim())) {
+                $('#tabsError').html('<span style="color:red;">Ingrese una Fecha Real Final válida</span>');
+                $('#FecRealFin').focus();
+                isAllValid = false;
+                return false;
+            }
+
+            if (!pattern.test($('#FecControlInicio').val().trim())) {
+                $('#tabsError').html('<span style="color:red;">Ingrese una Fecha Control Inicial válida</span>');
+                $('#FecControlInicio').focus();
+                isAllValid = false;
+                return false;
+            }
+
+            if (!pattern.test($('#FecControlFin').val().trim())) {
+                $('#tabsError').html('<span style="color:red;">Ingrese una Fecha Control Final válida</span>');
+                $('#FecControlFin').focus();
+                isAllValid = false;
+                return false;
+            }
+
+            if (sedesItems.length == 0) {
+                $('#tabsError').html('<span style="color:red;">Agregar al menos una Sede</span>');
+                isAllValid = false;
+                return false;
+            }
+
+            if (areasItems.length == 0) {
+                $('#tabsError').html('<span style="color:red;">Agregar al menos una Area</span>');
+                isAllValid = false;
+                return false;
+            }
+
+            if (empresasItems.length == 0) {
+                $('#tabsError').html('<span style="color:red;">Agregar al menos un Contratista</span>');
+                isAllValid = false;
+                return false;
+            }
+
+            console.log('inicio');
+            //Save if valid
+            if (isAllValid) {
+
+                var data = {
+                    NuevoRegistro: $('#myOpcion').val(),
+                    IdEmpresa: $('#IdEmpresa').val().trim(),
+                    NroOrden: $('#NroOrden').val().trim(),
+                    Descripcion: $('#Descripcion').val().trim(),
+                    FecRealInicio: $('#FecRealInicio').val().trim(),
+                    FecRealFin: $('#FecRealFin').val().trim(),
+                    FecControlInicio: $('#FecControlInicio').val().trim(),
+                    FecControlFin: $('#FecControlFin').val().trim(),
+                    lRegistrosAreas: areasItems,
+                    lRegistrosSedes: sedesItems,
+                    lRegistrosContratas: empresasItems
+                }
+
+                console.log($('#myOpcion').val());
+
+                if (!$IsSend) {
+
+                    $IsSend = true;
+
+                    $(this).val('Procesando...');
+
+                    $.ajax({
+                        url: '/Procesos/OrdenServicio/EditarOrden',
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (d) {
+                            //check is successfully save to database
+                            if (d.status == true) {
+                                //will send status from server side
+                                console.log('done');
+                                //alert('Se registro satisfactoriamente.');
+                                //clear form
+                                areasItems = [];
+                                sedesItems = [];
+                                empresasItems = [];
+                            }
+                            else {
+                                alert('Failed');
+                            }
+                            $('#btnEnviar').val('Generar Orden de Servicio');
+                        },
+                        error: function () {
+                            alert('Error. Procesar otra vez.');
+                            $('#btnEnviar').val('Generar Orden de Servicio');
+                        }
+                    }).done(function () {
+                        var url = $("#myUrl").val();
+                        var blNuevo = $('#myOpcion').val();
+                        window.location.href = url + '?sMensaje=Se ha ' + (blNuevo == 'True' ? 'Creado ' : 'Modificado ') + ' la Orden Seleccionado en forma exitosa';
+                        //window.location.href = url + '?sMensaje=Se ha ';
+                    });
+                }
+
+            }
+
+        });
+
+        function loadListados() {
+            @if (Model.lRegistrosSedes != null) {
+                foreach (var d in Model.lRegistrosSedes)
+                {
+                    @:sedesItems.push({ IdEmpresa: '', NroOrden: '', CodigoSede: '@d.CodigoSede', DescripcionSede: '@d.DescripcionSede' });
+                }
+                @:GeneratedSedesItemsTable();
+            }
+
+            @if (Model.lRegistrosAreas != null) {
+                foreach (var d in Model.lRegistrosAreas)
+                {
+                    @:areasItems.push({ IdEmpresa: '', NroOrden: '', CodigoDpto: '@d.CodigoDpto', DescripcionDpto: '@d.DescripcionDpto' });
+                }
+                @:GeneratedAreasItemsTable();
+            }
+
+            @if (Model.lRegistrosContratas != null) {
+                foreach (var d in Model.lRegistrosContratas)
+                {
+                    @:empresasItems.push({ IdEmpresa: '', NroOrden: '', IdContrata: '@d.IdContrata', DescContrata: '@d.DescContrata', IdSubContrata: '@d.IdSubContrata', DescSubContrata: '@d.DescSubContrata' });
+                }
+                @:GeneratedEmpresasItemsTable();
+            }
+    }
+
+    });
+
+    function ObtenerSedes() {
+        url = "/Procesos/OrdenServicio/ObtenerSedes";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            async: true,
+            data: {},
+            success: function (data) {
+                try {
+                    var obj = JSON.parse(data);
+                    var htmlOpProducts = "<option value=''> (Seleccione) </option>";
+                    if (data != "-1" && data.length > 0) {
+                        for (var i = 0; i < obj.length; i++) {
+                            htmlOpProducts = htmlOpProducts + '<option value="' + obj[i].Codigo + '">' + obj[i].Descripcion + '</option>';
+                        }
+                        $('#itemSede').empty();
+                        $("#itemSede").append(htmlOpProducts);
+                    }
+                    else {
+                        alert("Ocurrió un problema al obtener las SEDES");
+                    }
+                }
+                catch (e) {
+                    //alert(e);
+                }
+            },
+            error: function (xr, msg, e) {
+            }
+        });
+    }
+    function ObtenerAreas() {
+        url = "/Procesos/OrdenServicio/ObtenerAreas";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            async: true,
+            data: {},
+            success: function (data) {
+                try {
+                    var obj = JSON.parse(data);
+                    var htmlOpProducts = "<option value=''> (Seleccione) </option>";
+                    if (data != "-1" && data.length > 0) {
+                        for (var i = 0; i < obj.length; i++) {
+                            htmlOpProducts = htmlOpProducts + '<option value="' + obj[i].Codigo + '">' + obj[i].Descripcion + '</option>';
+                        }
+                        $('#itemArea').empty();
+                        $("#itemArea").append(htmlOpProducts);
+                    }
+                    else {
+                        alert("Ocurrió un problema al obtener las AREAS");
+                    }
+                }
+                catch (e) {
+                    //alert(e);
+                }
+            },
+            error: function (xr, msg, e) {
+            }
+        });
+    }
+    function ObtenerContratas() {
+        url = "/Procesos/OrdenServicio/ObtenerContratas";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            async: true,
+            data: {
+                IdEmpresaSel: ""
+            },
+            success: function (data) {
+                try {
+                    var obj = JSON.parse(data);
+                    var htmlOpProducts = "<option value=''> (Seleccione) </option>";
+                    if (data != "-1" && data.length > 0) {
+                        for (var i = 0; i < obj.length; i++) {
+                            htmlOpProducts = htmlOpProducts + '<option value="' + obj[i].IdEmpresa + '">' + obj[i].RazonSocial + '</option>';
+                        }
+                        $('#itemContrata').empty();
+                        $("#itemContrata").append(htmlOpProducts);
+                    }
+                    else {
+                        alert("Ocurrió un problema al obtener los CONTRATAS");
+                    }
+                }
+                catch (e) {
+                    //alert(e);
+                }
+            },
+            error: function (xr, msg, e) {
+            }
+        });
+    }
+    function ObtenerSubContratas() {
+        url = "/Procesos/OrdenServicio/ObtenerContratas";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            async: true,
+            data: {
+                IdEmpresaSel: $('#itemContrata').val().trim()
+            },
+            success: function (data) {
+                try {
+                    var obj = JSON.parse(data);
+                    var htmlOpSubContrata = '<option value="">(No Aplica)</option>';
+                    if (data != "-1" && data.length > 0) {
+                        for (var i = 0; i < obj.length; i++) {
+                            htmlOpSubContrata = htmlOpSubContrata + '<option value="' + obj[i].IdEmpresa + '">' + obj[i].RazonSocial + '</option>';
+                        }
+                        $('#itemSubContrata').empty();
+                        $("#itemSubContrata").append(htmlOpSubContrata);
+                    }
+                    else {
+                        alert("Ocurrió un problema al obtener los SUBCONTRATAS");
+                    }
+                }
+                catch (e) {
+                    //alert(e);
+                }
+            },
+            error: function (xr, msg, e) {
+            }
+        });
+    }
+
+    $(function () {
+        $("#tabs").tabs();
+    });
+
+    $(".datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
+</script>
+
+

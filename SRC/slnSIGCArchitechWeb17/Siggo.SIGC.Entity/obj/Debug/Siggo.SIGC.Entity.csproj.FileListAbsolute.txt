@@ -1,0 +1,8 @@
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\bin\Debug\Siggo.SIGC.Entity.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\bin\Debug\Siggo.SIGC.Entity.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\obj\Debug\Siggo.SIGC.Entity.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\obj\Debug\Siggo.SIGC.Entity.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\bin\Debug\Siggo.SIGC.Entity.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\bin\Debug\Siggo.SIGC.Entity.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\obj\Debug\Siggo.SIGC.Entity.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Entity\obj\Debug\Siggo.SIGC.Entity.pdb

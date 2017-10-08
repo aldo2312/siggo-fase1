@@ -1,0 +1,113 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Procesos.Models.OrdenModel
+
+<br />
+@using (Html.BeginForm())
+{
+    <div>@Html.HiddenFor(m => m.ClienteSel, null)</div>
+    <div>@Html.HiddenFor(m => m.NroOrdenSel, null)</div>
+    <div>@Html.HiddenFor(m => m.ContratistaSel, null)</div>
+        <div id="col1">
+            <div class="Titulo">
+                Periodos&nbsp;&nbsp;&nbsp;
+                @Html.DropDownList("MesControl", ViewBag.Mes as SelectList, null, new { style = "width:100px;" })
+                @Html.DropDownList("AnhoControl", ViewBag.Año as SelectList, null, new { style = "width:80px;" })
+                <input class="differentbutton" id="btnGenerarPeriodo" type="button" value="Generar Periodo" />
+                <input class="differentbutton" id="btnEliminarPeriodo" name="btnEliminarPeriodo" type="submit" value="Quitar Periodos Marcados" />
+            </div>
+            <br />
+            <table>
+                <tr>
+                    <th style="width:40px">Mes</th>
+                    <th style="width:40px">Año</th>
+                    <th style="width:50px">Estado</th>
+                    <th style="width:30px">EsContratista</th>
+                    <th style="width:50px">#Empleados</th>
+                    <th style="width:50px">#Vehiculos</th>
+                    <th style="width:20px"></th>
+                    <th style="width:20px"></th>
+                    <th style="width:20px"></th>
+                </tr>
+                @{int nFila = 0; }
+                @if (Model.lRegistrosPeriodos.Count() > 0)
+                {
+                    foreach (var item in Model.lRegistrosPeriodos)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NombreMes)
+                                @Html.Hidden("Ids", string.Concat(item.Mes, item.Anho))
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Anho)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Situacion)
+                            </td>
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.EsContratista)
+                            </td>
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.ValorEmpleado)
+                            </td>
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.ValorVehiculo)
+                            </td>
+                            <td>
+                                @if (item.Estado.Equals("P"))
+                                { 
+                                    <input type="checkbox" value="@nFila.ToString()" name="ChecksReg" />
+                                }
+                            </td>
+                            <td>
+                                @if (item.Publicado.Equals("0")) {
+                                    @Html.ActionLink("Publicar", "Procesar", "OrdenServicio", new { area = "Procesos", Contratas = Model.ContratistaSel, Clientes = Model.ClienteSel, NroOrden = Model.NroOrdenSel, MesControl = item.Mes, AnhoControl = item.Anho, Publicar = 1 }, new { id = "Publicar", onclick = "return confirm('¿Esta seguro de Publicar el Periodo Seleccionado ?');" });
+                                }
+                            </td>
+                            <td>
+                                @if (item.Publicado.Equals("1"))
+                                {
+                                    @Html.ActionLink("Retirar Publicación", "Procesar", "OrdenServicio", new { area = "Procesos", Contratas = Model.ContratistaSel, Clientes = Model.ClienteSel, NroOrden = Model.NroOrdenSel, MesControl = item.Mes, AnhoControl = item.Anho, Publicar = 0 }, new { id = "Publicar", onclick = "return confirm('¿Esta seguro de Retirar la Publicación del Periodo Seleccionado ?');" });
+                                }
+                            </td>
+                        </tr>
+                        nFila++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="10">No se encontraron registros</td>
+                    </tr>
+                }
+
+            </table>
+            @if (ViewBag.MensajePeriodo != null)
+            {
+                <br />
+                <div class="Mensaje">@ViewBag.MensajePeriodo</div>
+            }
+            @if (ViewBag.ErrorPeriodo != null)
+            {
+                <br />
+                <div class="Error">@ViewBag.ErrorPeriodo</div>
+            }
+            <br />
+        </div>
+}
+
+<script>
+    $('#btnGenerarPeriodo').click(function () {
+        //alert("En Construcción");
+        var IdEmpresaSel = $('#ContratistaSel').val();
+        var NroOrdenSel = $('#NroOrdenSel').val();
+        var MesSelec = $('#MesControl').val();
+        var AnhoSelec = $('#AnhoControl').val();
+
+        if (confirm("Está seguro que desea continuar con el proceso?") == true) {
+            location.href = 'OrdenServicio/GenerarPeriodo/?IdEmpresaSel=' + IdEmpresaSel + '&NroOrden=' + NroOrdenSel + '&MesControl=' + MesSelec + '&AnhoControl=' + AnhoSelec;
+        } else {
+            return false;
+        }        
+    });
+
+</script>

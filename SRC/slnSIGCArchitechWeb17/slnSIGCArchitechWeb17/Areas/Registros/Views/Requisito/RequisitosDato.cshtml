@@ -1,0 +1,328 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Registros.Models.RequisitoWebModel
+
+<br />
+@using (Html.BeginForm())
+{
+    <div>@Html.HiddenFor(m => m.IdEmpresa, null)</div>
+        <div>@Html.HiddenFor(m => m.IdTipoServicio, null)</div>
+        <div>@Html.HiddenFor(m => m.IdTipoDocumento, null)</div>
+        <div id="col1" >
+            <div class="Titulo">
+                Datos&nbsp;&nbsp;&nbsp;
+                <input class="differentbutton" id="btnAgregarDato" type="button" value="Agregar" />
+                <input class="differentbutton" id="btnQuitarDato" name="btnQuitarDato" type="submit" value="Quitar Datos Marcados" />
+            </div>
+            <br />
+
+            <table>
+                <tr>
+                    <th style="width:60px">Id</th>
+                    <th style="width:250px">Descripcion</th>
+                    <th style="width:60px">Orden</th>
+                    <th style="width:20px"></th>
+
+                </tr>
+                @{int nFila = 0; }
+                @if (Model.lRegistrosDatos.Count() > 0)
+                {
+                    foreach (var item in Model.lRegistrosDatos)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdDato)
+                                @Html.Hidden("IdsDato", item.IdDato)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DescripcionDato)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Orden)
+                            </td>
+                            <td>
+                                <input type="checkbox" value="@nFila.ToString()" name="ChecksDato" />
+                            </td>
+                        </tr>
+                        nFila++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">No se encontraron registros</td>
+                    </tr>
+                }
+
+            </table>
+            @if (ViewBag.MensajeDato != null)
+            {
+                <br />
+                <div class="Mensaje">@ViewBag.MensajeDato</div>
+            }
+            @if (ViewBag.ErrorDato != null)
+            {
+                <br />
+                <div class="Error">@ViewBag.ErrorDato</div>
+            }
+            <br />
+
+            <div id="myModal" class="modal">
+                <div id="divRequisito-Edit" class="modal-content">
+                    <fieldset>
+                        <h4>Agregar Datos</h4>
+                        <table class="tablaForm">
+                            <tr>
+                                <td>Seleccione Dato</td>
+                                <td>
+                                    <select id="itemDato" style="width:250px;" />
+                                    <span class="errorD">Dato Obligatorio</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" id="add" value="Agregar" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="Datos" class="tablecontainer">
+
+                        </div>
+
+                        <br />
+                        <input class="differentbutton" id="btnOkDato" name="btnOkDato" type="button" value="Aceptar" />
+                        <input class="differentbutton" id="btnCerrarDato" type="button" value="Cerrar" />
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+}
+
+    <script type="text/javascript">
+        var requisitoItems = [];
+
+        $(document).ready(function () {
+            //var requisitoItems = [];
+            ObtenerDatos();
+            //Add button click function
+            $('#add').click(function () {
+                //Check validation of order item
+                var isValidItem = true;
+                //console.log($('#itemDato').val());
+
+                if ($('#itemDato option:selected').text().trim() == '') {
+                    isValidItem = false;
+                    $('#itemDato').siblings('span.errorD').css('visibility', 'visible');
+                    console.log('cambia estilo');
+                }
+                else if ($('#itemDato').val().trim() == '') {
+                    isValidItem = false;
+                    $('#itemDato').siblings('span.errorD').css('visibility', 'visible');
+                    console.log('cambia estilo');
+                }
+                else {
+                    $('#itemDato').siblings('span.errorD').css('visibility', 'hidden');
+                }
+                if ($('#itemDato option:selected').text().trim() != '') {
+                    var codigo = $('#itemDato').val().trim();
+                    var Existe = false;
+                    for (var i = 0; i < requisitoItems.length; i++) {
+                        if (requisitoItems[i].IdDato == codigo) {
+                            Existe = true;
+                            break;
+                        }
+                    }
+                    if (Existe == true) {
+                        alert("El Requisito Seleccionado [" + $('#itemDato').val().trim() + "] ya ha sido ingresado. Verificar");
+                        isValidItem = false;
+                    }
+                }
+
+                //Add item to list if valid
+                if (isValidItem) {
+                    requisitoItems.push({
+                        IdEmpresa: $('#IdEmpresa').val().trim(),
+                        IdTipoServicio: $('#IdTipoServicio').val().trim(),
+                        IdTipoDocumento: $('#IdTipoDocumento').val().trim(),
+                        IdDato: $('#itemDato').val().trim(),
+                        DescripcionDato: $('#itemDato option:selected').text().trim(),
+                        Orden: 0
+                    });
+
+                    //Clear fields
+                    $('#itemDato').val('');
+                    //console.log(requisitoItems);
+                }
+                //populate order items
+                GeneratedItemsTable();
+
+            });
+            //Save button click function
+            $('#btnOkDato').click(function () {
+                //validation of order
+                var isAllValid = true;
+                if (requisitoItems.length == 0) {
+                    $('#Datos').html('<span style="color:red;">Agregar al menos un Dato</span>');
+                    isAllValid = false;
+                }
+
+                //Save if valid
+                if (isAllValid) {
+                    var data = {
+                        lRegistrosDatos: requisitoItems
+                    }
+                    $(this).val('Procesando...');
+                    $.ajax({
+                        url: '/Registros/Requisito/GrabarDatos',
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (d) {
+                            //check is successfully save to database
+                            if (d.status == true) {
+                                //will send status from server side
+                                alert('Se registro satisfactoriamente.');
+                                //clear form
+                                requisitoItems = [];
+                                $('#Datos').empty();
+                                $('#MensajeDato').val(d.MensajeRequisito);
+                            }
+                            else {
+                                alert('Failed');
+                            }
+                            $('#btnOkDato').val('Aceptar');
+                        },
+                        error: function () {
+                            alert('Error. Procesar otra vez.');
+                            $('#btnOkDato').val('Aceptar');
+                        }
+                    });
+                }
+
+            });
+            //function for show added items in table
+            function GeneratedItemsTable() {
+                if (requisitoItems.length > 0) {
+                    var $table = $('<table/>');
+                    $table.append('<thead><tr><th>Datos</th><th></th></tr></thead>');
+                    var $tbody = $('<tbody/>');
+                    $.each(requisitoItems, function (i, val) {
+                        var $row = $('<tr/>');
+                        $row.append($('<td/>').html(val.DescripcionDato));
+                        var $remove = $('<a href="#">Remove</a>');
+                        $remove.click(function (e) {
+                            e.preventDefault();
+                            requisitoItems.splice(i, 1);
+                            GeneratedItemsTable();
+                        });
+                        $row.append($('<td/>').html($remove));
+                        $tbody.append($row);
+                    });
+                    $table.append($tbody);
+                    $('#Datos').html($table);
+                } else {
+                    $('#Datos').html('');
+                }
+            }
+
+            // Get the modal
+            var modal = document.getElementById('myModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("btnAgregarDato");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            var btn2 = document.getElementById("btnCerrarDato");
+
+            // When the user clicks on the button, open the modal
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            btn2.onclick = function () {
+                modal.style.display = "none";
+                requisitoItems = [];
+                $('#Datos').empty();
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+
+        function ObtenerDatos() {
+            url = "/Registros/Requisito/ObtenerDatos";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                async: true,
+                data: {},
+                success: function (data) {
+                    try {
+                        var obj = JSON.parse(data);
+                        var htmlOpProducts = "<option value=''> (Seleccione) </option>";
+                        if (data != "-1" && data.length > 0) {
+                            for (var i = 0; i < obj.length; i++) {
+                                htmlOpProducts = htmlOpProducts + '<option value="' + obj[i].IdDato + '">' + obj[i].Descripcion + '</option>';
+                            }
+                            $('#itemDato').empty();
+                            $("#itemDato").append(htmlOpProducts);
+                        }
+                        else {
+                            alert("Ocurrió un problema al obtener los DATOS");
+                        }
+                    }
+                    catch (e) {
+                        //alert(e);
+                    }
+                },
+                error: function (xr, msg, e) {
+                }
+            });
+        }
+
+
+    </script>
+
+    <style>
+        /*Adding some css for looks good*/
+        span.errorD {
+            display: block;
+            visibility: hidden;
+            color: red;
+            font-size: 90%;
+        }
+
+
+        /*css for table*/
+        .container td {
+            vertical-align: top;
+        }
+
+        .tablecontainer table {
+            width: 100%;
+            border-collapse: collapse;
+            border-top: 1px solid #BFAEAE;
+            border-right: 1px solid #BFAEAE;
+        }
+
+        .tablecontainer th {
+            border-bottom: 2px solid #BFAEAE !important;
+        }
+
+        .tablecontainer th, .tablecontainer td {
+            text-align: left;
+            border-left: 1px solid #BFAEAE;
+            padding: 5px;
+            border-bottom: 1px solid #BFAEAE;
+        }
+
+        .ui-widget {
+            font-size: 12px !important;
+        }
+    </style>
+

@@ -1,0 +1,96 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Registros.Models.RecursoWebModel
+@{
+    ViewBag.Title = "Editar Empleado";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+@if (Model.NuevoRegistro)
+{
+    <h2>Nuevo Vehiculo</h2>
+}
+else
+{
+    <h2>Editar Vehiculo : @Model.IdRecurso</h2>
+}
+<div class="Titulo">
+    Empresa: @Model.NombreEmpresaSel
+</div>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.NuevoRegistro)
+    @Html.HiddenFor(m => m.IdEmpresaSel)
+    @Html.HiddenFor(m => m.NombreEmpresaSel)
+
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                @Html.HiddenFor(m => m.IdEmpresa)
+                <td>@Html.LabelFor(m => m.IdRecurso) *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.IdRecurso, new { style = "width:80px;", disabled = "true", maxlength = 10 })
+                    @Html.HiddenFor(m => m.IdRecurso)
+                    @Html.ValidationMessageFor(m => m.IdRecurso)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Nro. Placa Identificación") *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.NumeroReferencia, new { style = "width:100px;", maxlength = 12 })
+                    @Html.ValidationMessageFor(m => m.NumeroReferencia)
+                </td>
+            </tr>            
+            <tr>
+
+                <td>@Html.Label("Denominación del Vehiculo") *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Descripcion4, new { style = "width:350px;", maxlength = 60 })
+                    @Html.ValidationMessageFor(m => m.Descripcion4)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Detalle") *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Observacion, new { style = "width:350px;", maxlength = 100 })
+                    @Html.ValidationMessageFor(m => m.Observacion)
+                </td>
+            </tr>            
+            <tr>
+                <td>@Html.LabelFor(m => m.TipoRecurso) *</td>
+                <td>
+                    @Html.DropDownListFor(m => m.TipoRecurso, new SelectList(Model.lTipoRecurso, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:280px;" })
+                    @Html.ValidationMessageFor(m => m.TipoRecurso)
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.Label("Estado Registro")</td>
+                <td>@Html.TextBoxFor(m => m.EstadoDescripcion, new { style = "width:150px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fecha Registro")</td>
+                <td>@Html.TextBoxFor(m => m.FechaMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Hora Registro")</td>
+                <td>@Html.TextBoxFor(m => m.HoraMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Registrado Por")</td>
+                <td>@Html.TextBoxFor(m => m.Maker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <div>
+        <input type="submit" value="Grabar" />
+        <input type="button" value="Cancelar" onclick="history.back();" />
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}

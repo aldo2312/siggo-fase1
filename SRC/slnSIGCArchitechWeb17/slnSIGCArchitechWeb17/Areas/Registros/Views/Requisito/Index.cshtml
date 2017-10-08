@@ -1,0 +1,131 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Registros.Models.RequisitoWebModel
+@{
+    ViewBag.Title = "SisGpdWeb - Matriz de Servicio";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Matriz de Servicio</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Get, null))
+{
+    if (Session["TipoEmpresaSiggo"].ToString() != "CONTRATISTA")
+    {
+        <div class="Titulo">
+            Empresa: @Html.DropDownListFor(m => m.IdEmpresaSel, new SelectList(Model.lEmpresas, "Codigo", "Descripcion"), "(Todos)", new { style = "width:450px;" })
+        </div>
+        <br />
+        <div id="newReg" style="@Html.Raw(String.IsNullOrEmpty(Model.IdEmpresaSel) ? "visibility:hidden" : "")">
+            @Html.ActionLink("Crear Requisito", "Editar", "Requisito", null, new { @id = "lnkRequisito" })
+        </div>
+    }
+    else
+    {
+        <div>@Html.HiddenFor(m => m.IdEmpresaSel)</div>
+        <br />
+        <div id="newReg" >
+            @Html.ActionLink("Crear Requisito", "Editar", "Requisito", null, new { @id = "lnkRequisito" })
+        </div>
+    }
+
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Identificador")</td>
+                <td>@Html.TextBox("IdRequisito") </td>
+                <td>@Html.Label("Descripción")</td>
+                <td>@Html.TextBox("DescripcionRequisito")</td>
+                <td>@Html.Label("Tipo Recurso")</td>
+                <td>@Html.DropDownList("TipoRecurso", null, "(Todos)", new { style = "width:250px;" })</td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Buscar" />
+        <input type="button" value="Limpiar" onclick="Limpiar()"/>
+    </fieldset>
+    <br />
+    <div>@Html.HiddenFor(m => m.NombreEmpresaSel)</div>
+}
+@if (ViewBag.Mensaje != null)
+{    
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+    <br />
+}
+@if (ViewBag.Error != null)
+{
+    <div id="Error">@ViewBag.Error</div>
+    <br />
+}
+
+@if (Model.lRegistrosRequisitos != null)
+{
+    if (Model.lRegistrosRequisitos.Count() > 0)
+    {
+        WebGrid wgRequisitos = new WebGrid(Model.lRegistrosRequisitos, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+        if (wgRequisitos.SelectedIndex < 0)
+        {
+            wgRequisitos.SelectedIndex = 0;
+        }
+        var gridColumnas = new List<WebGridColumn>();
+        gridColumnas.Add(wgRequisitos.Column("IdTipoDocumento", header: "Id", format: (item) => item.GetSelectLink(item.IdTipoDocumento)));
+        gridColumnas.Add(wgRequisitos.Column("DescripcionRequisito", header: "Requisito", canSort: false, style: ""));
+        gridColumnas.Add(wgRequisitos.Column("IdEmpresa", header: "IdCont.", canSort: false, style: "csEmpresa"));
+        gridColumnas.Add(wgRequisitos.Column("NombreEmpresa", header: "Contratista", canSort: false, style: ""));
+        gridColumnas.Add(wgRequisitos.Column("DescripcionTipoRecurso", header: "Tipo Recurso", canSort: false, style: ""));
+        gridColumnas.Add(wgRequisitos.Column("TipoRiesgo", header: "Tipo Riesgo", canSort: false, style: ""));
+        gridColumnas.Add(wgRequisitos.Column("IdTipoServicio", header: "IdServ.", canSort: false, style: "csTipoServicio"));
+        gridColumnas.Add(wgRequisitos.Column("Estado", header: "Estado", canSort: false, style: ""));
+        gridColumnas.Add(wgRequisitos.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+        gridColumnas.Add(wgRequisitos.Column("Editar", header: "", format: (item) => @Ajax.ActionLink("Modificar", "Editar", "Requisito", new { Id = item.IdTipoDocumento, IdTipoServicio = item.IdTipoServicio, IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.NombreEmpresa }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+        gridColumnas.Add(wgRequisitos.Column("Eliminar", header: "", format: (item) => @Html.ActionLink("Eliminar", "Eliminar", new { Id = item.IdTipoDocumento, IdTipoServicio = item.IdTipoServicio, IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.NombreEmpresa }, new { id = "Eliminar", onclick = "return confirm('¿Esta seguro de Eliminar el Requisito " + item.IdTipoDocumento + " ?');" }), canSort: false, style: ""));
+
+        @wgRequisitos.GetHtml(
+                    rowStyle: "webgrid-row-style",
+                    selectedRowStyle: "webgrid-selected-row",
+                    htmlAttributes: new { id = "MainTable" },
+
+                    mode: WebGridPagerModes.All,
+                    firstText: "<< Primera",
+                    previousText: "< Anterior",
+                    nextText: "Siguiente >",
+                    lastText: "Última >>",
+                    columns: wgRequisitos.Columns(gridColumnas.ToArray())
+                );
+
+        if (wgRequisitos.HasSelection)
+        {
+            Html.RenderAction("RequisitosDato", "Requisito", new { area = "Registros", IdEmpresaSel = wgRequisitos.SelectedRow["IdEmpresa"], IdTipoServicio = wgRequisitos.SelectedRow["IdTipoServicio"], IdRequisito = wgRequisitos.SelectedRow["IdTipoDocumento"] });
+        }
+    }
+    else
+    {
+        <div id="No">No existen registros</div>
+    }
+}
+
+<script type="text/javascript">
+    $('#IdEmpresaSel').change(function () {
+        ctrl = document.getElementById("newReg");
+        var textSelected = $('#IdEmpresaSel Option:Selected').text();
+        $('#NombreEmpresaSel').val(textSelected);
+        //alert($('#NombreEmpresaSel').val());
+        if ($(this).val() == "") {
+            ctrl.style.visibility = "hidden";
+        } else {
+            ctrl.style.visibility = "visible";
+        }
+    });
+
+    $('#lnkRequisito').click(function () {
+        var IdEmpresaSel = $('#IdEmpresaSel').val();
+        var NombreEmpresaSel = $('#NombreEmpresaSel').val();
+        var url2 = $(this).attr('href') + '?IdEmpresaSel=' + IdEmpresaSel + '&NombreEmpresaSel=' + NombreEmpresaSel;
+        $('#lnkRequisito').attr('href', url2);
+    });
+
+    function Limpiar() {
+        var txt = document.getElementById('IdRequisito'); txt.value = "";
+        var txt = document.getElementById('DescripcionRequisito'); txt.value = "";
+        var cbo = document.getElementById('TipoRecurso'); cbo[0].selected = true; 
+    }
+</script>
+

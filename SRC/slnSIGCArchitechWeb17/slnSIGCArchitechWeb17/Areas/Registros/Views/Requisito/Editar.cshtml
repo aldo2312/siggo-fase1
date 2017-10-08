@@ -1,0 +1,217 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Registros.Models.RequisitoWebModel
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+@Html.Hidden("myUrl", Url.Action("Index", "Requisito"))
+
+@if (Model.NuevoRegistro)
+{
+    <h2>Nuevo Requisito</h2>
+}
+else
+{
+    <h2>Editar Requisito : @Model.IdTipoDocumento</h2>
+}
+
+<div class="Titulo">
+    Empresa: @Model.NombreEmpresaSel
+</div>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.NuevoRegistro)
+    @Html.HiddenFor(m => m.IdEmpresaSel)
+    @Html.HiddenFor(m => m.NombreEmpresaSel)
+    @Html.HiddenFor(m => m.IdEmpresa)
+    @Html.Hidden("myIdTipoDoc", Model.IdTipoDocumento, new { @id = "myIdTipoDoc" })
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Tipo Servicio")</td>
+                <td>
+                    @Html.DropDownListFor(m => m.IdTipoServicio, new SelectList(Model.lTipoServicio, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:250px;" })
+                    @Html.ValidationMessageFor(m => m.IdTipoServicio)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Documento")</td>
+                <td>
+                    @Html.DropDownListFor(m => m.IdTipoDocumento, new SelectList(string.Empty, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:250px;" })
+                    @Html.ValidationMessageFor(m => m.IdTipoDocumento)
+                </td>
+                @*<td>
+                    <select id="IdTipoDocumento" style="width:250px;" />
+                </td>*@
+
+            </tr>
+
+            <tr>
+                <td>@Html.Label("Descripción")</td>
+                <td>
+                    @Html.TextBoxFor(m => m.DescripcionRequisito, new { style = "width:350px;", maxlength = 40 })
+                    @Html.ValidationMessageFor(m => m.DescripcionRequisito)
+                </td>
+            </tr>
+            
+            <tr>
+                <td>@Html.LabelFor(m => m.DiasNotificacion) *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.DiasNotificacion, new { style = "width:80px;", maxlength = 2 })
+                    @Html.ValidationMessageFor(m => m.DiasNotificacion)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.DiasTolerancia)</td>
+                <td>
+                    @Html.TextBoxFor(m => m.DiasTolerancia, new { style = "width:80px;", maxlength = 2 })
+                    @Html.ValidationMessageFor(m => m.DiasTolerancia)
+                </td>
+            </tr>           
+            <tr>
+                <td>@Html.LabelFor(m => m.TipoRecurso) *</td>
+                <td>
+                    @Html.DropDownListFor(m => m.TipoRecurso, new SelectList(Model.lTipoRecurso, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:350px;" })
+                    @Html.ValidationMessageFor(m => m.TipoRecurso)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Periodicidad) </td>
+                <td>
+                    @Html.DropDownListFor(m => m.Periodicidad, new SelectList(Model.lPeriodicidad, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:250px;" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Habilita Pago?")</td>
+                <td>
+                    @Html.DropDownListFor(m => m.HabilitaPago, new SelectList(Model.lAcciones, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:100px;" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Habilita Acceso?")</td>
+                <td>
+                    @Html.DropDownListFor(m => m.HabilitaAcceso, new SelectList(Model.lAcciones, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:100px;" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Aplica dar de baja?")</td>
+                <td>
+                    @Html.DropDownListFor(m => m.DardeBaja, new SelectList(Model.lAcciones, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:100px;" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.Label("Fec. Vigencia Desde")</td>
+                <td>
+                    @Html.TextBoxFor(m => m.FecVigenciaDesde, new { @class = "datepicker", style = "width:100px;", maxlength = 10 })
+                    @*@Html.ValidationMessageFor(m => m.FechaVigenciaDesde)*@
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.Label("Fec. Vigencia Hasta")</td>
+                <td>
+                    @Html.TextBoxFor(m => m.FecVigenciaHasta, new { @class = "datepicker", style = "width:100px;", maxlength = 10 })
+                    @*@Html.ValidationMessageFor(m => m.FechaVigenciaHasta)*@
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.Label("Estado Registro")</td>
+                <td>@Html.TextBoxFor(m => m.EstadoDescripcion, new { style = "width:150px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fecha Registro")</td>
+                <td>@Html.TextBoxFor(m => m.FechaMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Hora Registro")</td>
+                <td>@Html.TextBoxFor(m => m.HoraMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Registrado Por")</td>
+                <td>@Html.TextBoxFor(m => m.Maker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <div>
+        <input type="submit" value="Grabar" />
+        <input type="button" value="Cancelar" onclick="return Cancelar();" />
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        ObtenerDocs();
+        @*var dd = document.getElementById('IdTipoDocumento');
+        console.log(dd);
+        for (var i = 0; i < dd.options.length; i++) {
+            if (dd.options[i].text == @Model.IdTipoDocumento) {
+                dd.selectedIndex = i;
+                break;
+            }
+        }*@
+    });
+
+    function Cancelar() {
+        var IdEmpresaSel = $('#IdEmpresaSel').val();
+        var NombreEmpresaSel = $('#NombreEmpresaSel').val();
+        var url = $("#myUrl").val();
+        window.location.href = url + '?IdEmpresaSel=' + IdEmpresaSel + '&NombreEmpresaSel=' + NombreEmpresaSel;
+    }
+
+    $("#IdTipoServicio").change(function () {
+        ObtenerDocs();        
+    })
+
+    function ObtenerDocs() {
+        url = "/Registros/Requisito/ObtenerTiposDocs";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            async: true,
+            data: {
+                IdTipoServicio: $('#IdTipoServicio').val().trim()
+            },
+            success: function (data) {
+                try {
+                    var obj = JSON.parse(data);
+                    var htmlOpProducts = "<option value=''> (Seleccione) </option>";
+                    if (data != "-1" && data.length > 0) {
+                        for (var i = 0; i < obj.length; i++) {
+                            htmlOpProducts = htmlOpProducts + '<option value="' + obj[i].IdTipoDocumento + '">' + obj[i].Descripcion + '</option>';
+                        }
+                        $('#IdTipoDocumento').empty();
+                        $("#IdTipoDocumento").append(htmlOpProducts);                        
+                        var id = $('#myIdTipoDoc').val();
+                        $('#IdTipoDocumento').val(id);
+                    }
+                    else {
+                        alert("Ocurrió un problema al obtener los Docs");
+                    }
+                }
+                catch (e) {
+                    //alert(e);
+                }
+            },
+            error: function (xr, msg, e) {
+            }
+        });
+    }
+
+    $(".datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
+</script>

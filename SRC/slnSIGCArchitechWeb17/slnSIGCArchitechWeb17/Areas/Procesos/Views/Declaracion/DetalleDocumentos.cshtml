@@ -1,0 +1,142 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Procesos.Models.DeclaracionDetalleModel
+
+<div>@Html.HiddenFor(m => m.IdEmpresaSel, null)</div>
+<div>@Html.HiddenFor(m => m.IdRegistroSel, null)</div>
+
+@if (Model.lDocumentos.Count() > 0)
+{
+    <br />
+    <div class="Titulo">Por Tipo de Riesgos </div>
+    foreach (var grupo in Model.lDocumentos.GroupBy(item => item.Riesgo))
+    {
+        <br />
+        <table>
+            <tr>
+                <td>
+                    <div class="layer1">
+                       <p class="heading"> ▼ @grupo.Key </p> 
+                        <div class="content">
+                            <br />
+                            <table>
+                                <tr>
+                                    <th style="width:5px"></th>
+                                    <th style="width:70px">Servicio</th>
+                                    <th style="width:70px">Requisitos</th>
+                                    <th style="width:40px">Declarar</th>
+                                    <th style="width:60px">Auditar</th>
+                                    <th style="width:80px">Imagen</th>
+                                </tr>
+                                @{int nContFile = 0; }
+                                @foreach (var item in Model.lDocumentos)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => item.NroSecuencia)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.TipoServicio)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => item.DescripcionArchivo)
+                                        </td>                                        
+                                        <td>
+                                            @if (!String.IsNullOrEmpty(Session["RolUsuario"].ToString()))
+                                            {
+                                                if (Session["RolUsuario"].ToString().Equals(Helper.Roles.OPERADOR))
+                                                {
+                                                    <a href='@Url.Action("RegistrarDeclaracion", "Declaracion", new { area = "Procesos", IdEmpresaSel = item.IdEmpresa, IdRegistroSel = item.IdRegistro, NroSecuenciaSel = item.NroSecuencia })'>
+                                                        <img alt="" title="Cargar Documento" style="cursor:pointer; cursor:hand;" src="@Url.Content("~/Resources/file_add.ico")" />
+                                                    </a>
+                                                }
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (!String.IsNullOrEmpty(Session["RolUsuario"].ToString()))
+                                            {
+                                                if (Session["RolUsuario"].ToString().Equals(Helper.Roles.AUDITOR)) {
+                                                    if (item.ExisteEvidencia == "Si")
+                                                    {
+                                                    <img alt="" title="Aprobar Documento" style="cursor:pointer; cursor:hand;" onclick="Aprobar(@item.IdEmpresa,@item.IdRegistro,@item.NroSecuencia)" src="@Url.Content("~/Resources/ok.ico")" />
+                                                    <img alt="" title="Rechazar Documento" style="cursor:pointer; cursor:hand;" onclick="Rechazar(@item.IdEmpresa,@item.IdRegistro,@item.NroSecuencia)" src="@Url.Content("~/Resources/not_ok.ico")" />
+                                                    }
+                                                }
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.lImagenes != null)
+                                            {
+                                                if (item.lImagenes.Count() > 0)
+                                                {
+                                                    @Html.DropDownList("CboFile" + nContFile.ToString(), new SelectList(item.lImagenes, "IdImagen", "NroArchivo"), new { style = "visibility:" + (item.lImagenes.Count > 1 ? "visible" : "hidden") + "; width:40px;font-size: 10px;" })
+                                                    <img alt="" title="@item.lImagenes[0].NombreArchivo" style="cursor:pointer; cursor: hand;" onclick="MostrarImagen('CboFile',@nContFile.ToString())" src="@Url.Content("~/Resources/attach.ico")" />
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                    nContFile++;
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
+}
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function () {
+
+        jQuery(".content").hide();
+
+        //toggle the component with class msg_body
+        jQuery(".heading").click(function () {
+            descrip = jQuery(this).text().trim();
+            if (jQuery(this).hasClass('active')) {
+                descrip = descrip.replace('▲', '▼');
+                jQuery(this).next(".content").slideToggle();
+                jQuery(this).toggleClass('active');
+            } else {
+                descrip = descrip.replace('▼', '▲');
+                jQuery(this).next(".content").slideToggle();
+                jQuery(this).toggleClass('active');
+            }
+            jQuery(this).text(descrip);
+        });
+
+        //var modal = document.getElementById('myModal');
+        ////var span = document.getElementsByClassName("close")[0];
+        //var btn2 = document.getElementById("btnCerrarCarga");
+
+        //btn2.onclick = function () {
+        //    modal.style.display = "none";
+        //}
+
+        //window.onclick = function (event) {
+        //    if (event.target == modal) {
+        //        modal.style.display = "none";
+        //    }
+        //}
+    });
+
+    //function CargarDocumento(EmpresaSel, RegistroSel, SecSel) {
+    //    //alert(EmpresaSel + '-' + RegistroSel + '-' + SecSel);
+    //    //var modal = document.getElementById('myModal_' + CodPopup);
+    //    //modal.style.display = "block";
+
+    //    var IdEmpresaSel = $('#IdEmpresaSel').val();
+    //    var NombreEmpresaSel = $('#NombreEmpresaSel').val();
+    //    var url2 = $(this).attr('href') + '?IdEmpresaSel=' + IdEmpresaSel + '&NombreEmpresaSel=' + NombreEmpresaSel;
+    //    $('#lnkRequisito').attr('href', url2);
+
+    //    location.href = 'AbrirImagen/?sIdImagen=' + combo.value;
+    //}
+
+    function MostrarImagen(NombreCombo, Nro) {
+        var IdEmpresaSel = $('#IdEmpresaSel').val();
+        var combo = document.getElementById(NombreCombo + Nro);
+        location.href = 'Declaracion/AbrirImagen/?IdEmpresaSel=' + IdEmpresaSel + '&sIdImagen=' + combo.value;
+    }
+
+</script>

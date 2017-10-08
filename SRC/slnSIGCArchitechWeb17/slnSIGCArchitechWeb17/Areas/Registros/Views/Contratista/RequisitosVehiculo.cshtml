@@ -1,0 +1,406 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Registros.Models.RecursoDetallesWebModel
+
+<br />
+@using (Html.BeginForm())
+{
+    <div>@Html.HiddenFor(m => m.IdEmpresaSel, null)</div>
+    <div>@Html.HiddenFor(m => m.IdRecursoSel, null)</div>
+    <div id="col1">
+        <div class="Titulo">
+            Requisitos&nbsp;&nbsp;&nbsp;
+            <input class="differentbutton" id="btnAgregarReq" type="button" value="Agregar" />
+            <input class="differentbutton" id="btnQuitarReq" name="btnQuitarReq" type="submit" value="Quitar Requisitos Marcadas" />
+        </div>
+        <br />
+        <table>
+            <tr>
+                <th style="width:60px">IdRequisito</th>
+                <th style="width:250px">Descripcion</th>
+                <th style="width:60px">Obligatorio</th>
+                <th style="width:20px"></th>
+
+            </tr>
+            @{int nFila = 0; }
+            @if (Model.lRecursosRequisitos.Count() > 0)
+            {
+                foreach (var item in Model.lRecursosRequisitos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdTipoDocumento)
+                            @Html.Hidden("IdsServicio", item.IdTipoServicio)
+                            @Html.Hidden("IdsRequisito", item.IdTipoDocumento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DescripcionDocumento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EsRequerido)
+                        </td>
+                        <td>
+                            <input type="checkbox" value="@nFila.ToString()" name="ChecksReq" />
+                        </td>
+                    </tr>
+                    nFila++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">No se encontraron registros</td>
+                </tr>
+            }
+
+        </table>
+        @if (ViewBag.MensajeRequisito != null)
+        {
+            <br />
+            <div class="Mensaje">@ViewBag.MensajeRequisito</div>
+        }
+        @if (ViewBag.ErrorRequisito != null)
+        {
+            <br />
+            <div class="Error">@ViewBag.ErrorRequisito</div>
+        }
+        <br />
+
+        <div id="myModal" class="modal">
+            <div id="divRequisito-Edit" class="modal-content">
+                <fieldset>
+                    <h4>Agregar Requisitos</h4>
+                    <table class="tablaForm">
+                        <tr>
+                            <td>Seleccione un Servicio</td>
+                            <td>
+                                <select id="itemTipoServicio" style="width:250px;" />
+                                <span class="errorD">Dato Obligatorio</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Seleccione Requisito</td>
+                            <td>
+                                <select id="itemTipoDocumento" style="width:250px;" />
+                                <span class="errorD">Dato Obligatorio</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Es Obligatorio</td>
+                            <td>
+                                <select id="itemEsRequerido">
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                </select>
+                                <span class="errorD">Dato Obligatorio</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Requiere Adjunto</td>
+                            <td>
+                                <select id="itemNecesitaAdjunto">
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                </select>
+                                <span class="errorD">Dato Obligatorio</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" id="add" value="Agregar" />
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="Requisitos" class="tablecontainer">
+
+                    </div>
+
+                    <br />
+                    <input class="differentbutton" id="btnOkReq" name="btnOkReq" type="button" value="Aceptar" />
+                    <input class="differentbutton" id="btnCerrarReq" type="button" value="Cerrar" />
+                </fieldset>
+            </div>
+        </div>
+    </div>
+                }
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var requisitoItems = [];
+        ObtenerServicios();
+        //Add button click function
+        $('#add').click(function () {
+            //Check validation of order item
+            var isValidItem = true;
+            if ($('#itemTipoServicio').val().trim() == '') {
+                isValidItem = false;
+                $('#itemTipoServicio').siblings('span.errorD').css('visibility', 'visible');
+            }
+            else {
+                $('#itemTipoServicio').siblings('span.errorD').css('visibility', 'hidden');
+            }
+
+            if ($('#itemTipoDocumento').val().trim() == '') {
+                isValidItem = false;
+                $('#itemTipoDocumento').siblings('span.errorD').css('visibility', 'visible');
+            }
+            else {
+                $('#itemTipoDocumento').siblings('span.errorD').css('visibility', 'hidden');
+            }
+
+            var codigo = $('#itemTipoServicio').val().trim() + $('#itemTipoDocumento').val().trim();
+            var Existe = false;
+            for (var i = 0; i < requisitoItems.length; i++) {
+                if (requisitoItems[i].IdTipoServicio + requisitoItems[i].IdTipoDocumento == codigo) {
+                    Existe = true;
+                    break;
+                }
+            }
+            if (Existe == true) {
+                alert("El Requisito Seleccionado [" + $('#itemTipoDocumento').val().trim() + "] ya ha sido ingresado. Verificar");
+                isValidItem = false;
+            }
+
+            //Add item to list if valid
+            if (isValidItem) {
+                requisitoItems.push({
+                    IdEmpresa: $('#IdEmpresaSel').val().trim(),
+                    IdRecurso: $('#IdRecursoSel').val().trim(),
+                    IdTipoServicio: $('#itemTipoServicio').val().trim(),
+                    DescripcionServicio: $("#itemTipoServicio option:selected").text().trim(),
+                    IdTipoDocumento: $('#itemTipoDocumento').val().trim(),
+                    DescripcionDocumento: $('#itemTipoDocumento option:selected').text().trim(),
+                    EsRequerido: $('#itemEsRequerido').val().trim() == "1" ? JSON.parse("true") : JSON.parse("false"),
+                    DescEsRequerido: $('#itemEsRequerido option:selected').text().trim(),
+                    NecesitaAdjunto: $('#itemNecesitaAdjunto').val().trim() == "1" ? JSON.parse("true") : JSON.parse("false"),
+                    DescNecesitaAdjunto: $('#itemNecesitaAdjunto option:selected').text().trim(),
+                    Orden:0
+                });
+
+                //Clear fields
+                $('#itemTipoServicio').val('');
+                $('#itemTipoDocumento').val('');
+                $('#itemEsRequerido').val('');
+                $('#itemNecesitaAdjunto').val('');
+            }
+            //populate order items
+            GeneratedItemsTable();
+
+        });
+        //Save button click function
+        $('#btnOkReq').click(function () {
+            //validation of order
+            var isAllValid = true;
+            if (requisitoItems.length == 0) {
+                $('#Requisitos').html('<span style="color:red;">Agregar al menos un Requisito</span>');
+                isAllValid = false;
+            }
+
+            //Save if valid
+            if (isAllValid) {
+                var data = {
+                    lRecursosRequisitos: requisitoItems
+                }
+                $(this).val('Procesando...');
+                $.ajax({
+                    url: '/Registros/Contratista/GrabarRequisitos',
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function (d) {
+                        //check is successfully save to database
+                        if (d.status == true) {
+                            //will send status from server side
+                            alert('Se registro satisfactoriamente.');
+                            //clear form
+                            requisitoItems = [];
+                            $('#Requisitos').empty();
+                            $('#MensajeRequisito').val(d.MensajeRequisito);
+                        }
+                        else {
+                            alert('Failed');
+                        }
+                        $('#btnOkReq').val('Aceptar');
+                    },
+                    error: function () {
+                        alert('Error. Procesar otra vez.');
+                        $('#btnOkReq').val('Aceptar');
+                    }
+                });
+            }
+
+        });
+        //function for show added items in table
+        function GeneratedItemsTable() {
+            if (requisitoItems.length > 0) {
+                var $table = $('<table/>');
+                $table.append('<thead><tr><th>Servicio</th><th>Requisito</th><th>Obligatorio</th><th>Adjuntos</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(requisitoItems, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.DescripcionServicio));
+                    $row.append($('<td/>').html(val.DescripcionDocumento));
+                    $row.append($('<td/>').html(val.DescEsRequerido));
+                    $row.append($('<td/>').html(val.DescNecesitaAdjunto));
+                    $tbody.append($row);
+                });
+                $table.append($tbody);
+                $('#Requisitos').html($table);
+            }
+        }
+
+        $("#itemTipoServicio").change(function () {
+            ObtenerRequisitos();
+        })
+
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("btnAgregarReq");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var btn2 = document.getElementById("btnCerrarReq");
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        btn2.onclick = function () {
+            modal.style.display = "none";
+            requisitoItems = [];
+            $('#Requisitos').empty();
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    });
+
+
+    function OcultarPanOficina(nValor) {
+        //ctrBot = document.getElementById("divRequisito-Edit");
+        //if (nValor == 0)
+        //{
+        //    ctrBot.style.visibility="hidden";
+        //}
+        //else {
+        //    ctrBot.style.visibility = "visible";
+        //    //ctrBot = document.getElementById("AgregarRequisito");
+        //    //ctrBot.value = "";
+        //}
+        alert("entro");
+
+    }
+
+    function ObtenerServicios() {
+        url = "ObtenerTiposServicios";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                async: true,
+                data: {},
+                success: function (data) {
+                    try {
+                        var obj = JSON.parse(data);
+                        var htmlOpProducts;
+                        if (data != "-1" && data.length > 0) {
+                            for (var i = 0; i < obj.length; i++) {
+                                htmlOpProducts = htmlOpProducts + '<option value="' + obj[i].IdTipoServicio + '">' + obj[i].Descripcion + '</option>';
+                            }
+                            $('#itemTipoServicio').empty();
+                            $("#itemTipoServicio").append(htmlOpProducts);
+                        }
+                        else {
+                            alert("Ocurrió un problema al obtener los TIPOS SERVICIOS");
+                        }
+                    }
+                    catch (e) {
+                        //alert(e);
+                    }
+                },
+                error: function (xr, msg, e) {
+                }
+            });
+        }
+
+    function ObtenerRequisitos() {
+        url = "ObtenerTiposRequisitos";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            async: true,
+            data: {
+                IdEmpresaSel: $('#IdEmpresaSel').val().trim(),
+                IdTipoServicio: $("#itemTipoServicio").val(),
+                TipoRecurso: "303"
+            },
+            success: function (data) {
+                try {
+                    var obj = JSON.parse(data);
+                    var htmlOpProducts;
+                    if (data != "-1" && data.length > 0) {
+                        for (var i = 0; i < obj.length; i++) {
+                            htmlOpProducts = htmlOpProducts + '<option value="' + obj[i].IdTipoDocumento + '">' + obj[i].DescripcionRequisito + '</option>';
+                        }
+                        $('#itemTipoDocumento').empty();
+                        $("#itemTipoDocumento").append(htmlOpProducts);
+                    }
+                    else {
+                        alert("Ocurrió un problema al obtener los REQUISITOS");
+                    }
+                }
+                catch (e) {
+                    //alert(e);
+                }
+            },
+            error: function (xr, msg, e) {
+            }
+        });
+    }
+
+</script>
+
+<style>
+    /*Adding some css for looks good*/
+    span.errorD {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+
+    /*css for table*/
+    .container td {
+        vertical-align: top;
+    }
+
+    .tablecontainer table {
+        width: 100%;
+        border-collapse: collapse;
+        border-top: 1px solid #BFAEAE;
+        border-right: 1px solid #BFAEAE;
+    }
+
+    .tablecontainer th {
+        border-bottom: 2px solid #BFAEAE !important;
+    }
+
+    .tablecontainer th, .tablecontainer td {
+        text-align: left;
+        border-left: 1px solid #BFAEAE;
+        padding: 5px;
+        border-bottom: 1px solid #BFAEAE;
+    }
+
+    .ui-widget {
+        font-size: 12px !important;
+    }
+</style>
+

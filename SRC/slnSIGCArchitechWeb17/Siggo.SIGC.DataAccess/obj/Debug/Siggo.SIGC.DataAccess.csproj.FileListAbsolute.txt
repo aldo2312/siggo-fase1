@@ -1,0 +1,20 @@
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.DataAccess.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.DataAccess.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Entity.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Util.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Entity.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Util.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.csprojResolveAssemblyReference.cache
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.DataAccess.dll.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.DataAccess.dll.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.DataAccess.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.DataAccess.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Entity.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Util.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Entity.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\bin\Debug\Siggo.SIGC.Util.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.csprojResolveAssemblyReference.cache
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.DataAccess\obj\Debug\Siggo.SIGC.DataAccess.pdb

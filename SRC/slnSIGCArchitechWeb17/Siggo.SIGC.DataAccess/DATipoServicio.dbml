@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SiggoData" Class="DATipoServicioDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAP-LENOVO;Initial Catalog=SiggoData;Persist Security Info=True;User ID=usr_siggo" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString3" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_MANT_REG_TIPO_SERVICIO" Method="SP_MANT_REG_TIPO_SERVICIO">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="RegistradoPor" Parameter="registradoPor" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_LISTAR_TIPO_SERVICIO" Method="SP_LISTAR_TIPO_SERVICIO">
+    <Parameter Name="Identificador" Parameter="identificador" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_LISTAR_TIPO_SERVICIOResult">
+      <Column Name="IdTipoServicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Accion" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaRegistro" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HoraRegistro" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="RegistradoPor" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_OBTENER_TIPO_DOCUMENTOS_SERVICIO" Method="SP_OBTENER_TIPO_DOCUMENTOS_SERVICIO">
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_OBTENER_TIPO_DOCUMENTOS_SERVICIOResult">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_OBTENER_DATOS_TIPO_SERVICIO" Method="SP_OBTENER_DATOS_TIPO_SERVICIO">
+    <Parameter Name="IDTIPOSERVICIO" Parameter="iDTIPOSERVICIO" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="SP_OBTENER_DATOS_TIPO_SERVICIOResult">
+      <Column Name="IdTipoServicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Accion" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FECMAKER" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="HoraRegistro" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="MAKER" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

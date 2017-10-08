@@ -1,0 +1,79 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Mantenimientos.Models.DatoWebModel
+@{
+    ViewBag.Title = "Administración de Datos de Documento";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Administración de Datos de Documento</h2>
+<div>
+    @Html.ActionLink("Crear Dato", "Editar", "Dato")
+
+</div>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Identificador")</td>
+                <td>@Html.TextBox("IdDato") </td>
+                <td>@Html.Label("Descripción")</td>
+                <td>@Html.TextBox("DescDato")</td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Buscar" />
+        <input type="button" value="Limpiar" onclick="Limpiar()" />
+    </fieldset>
+    <br />
+}
+
+@if (Model.lRegistrosDatos.Count() > 0)
+{
+    WebGrid wbDatos = new WebGrid(Model.lRegistrosDatos, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+    if (wbDatos.SelectedIndex < 0)
+    {
+        wbDatos.SelectedIndex = 0;
+    }
+    var gridColumnas = new List<WebGridColumn>();
+    gridColumnas.Add(wbDatos.Column("Identificador", header: "Id", format: (item) => item.GetSelectLink(item.IdDato)));
+    gridColumnas.Add(wbDatos.Column("Descripcion", header: "Descripción", canSort: false, style: ""));
+    gridColumnas.Add(wbDatos.Column("Estado", header: "Estado", canSort: false, style: ""));
+    gridColumnas.Add(wbDatos.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+    gridColumnas.Add(wbDatos.Column("Editar", header: "", format: (item) => @Ajax.ActionLink("Modificar", "Editar", "Dato", new { Id = item.IdDato }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+    gridColumnas.Add(wbDatos.Column("Eliminar", header: "", format: (item) => @Html.ActionLink("Eliminar", "Eliminar", new { Id = item.IdDato }, new { id = "Eliminar", onclick = "return confirm('¿Esta seguro de Eliminar el Dato " + item.IdDato + " ?');" }), canSort: false, style: ""));
+
+    @wbDatos.GetHtml(
+            rowStyle: "webgrid-row-style",
+            selectedRowStyle: "webgrid-selected-row",
+            htmlAttributes: new { id = "MainTable" },
+
+            mode: WebGridPagerModes.All,
+            firstText: "<< Primera",
+            previousText: "< Anterior",
+            nextText: "Siguiente >",
+            lastText: "Última >>",
+            columns: wbDatos.Columns(gridColumnas.ToArray())
+        );
+}
+else
+{
+    <div id="No">No existen registros</div>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <br />
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script>
+    function Limpiar() {
+        var txt = document.getElementById('IdDato'); txt.value = "";
+        var txt = document.getElementById('DescDato'); txt.value = "";
+    }
+</script>

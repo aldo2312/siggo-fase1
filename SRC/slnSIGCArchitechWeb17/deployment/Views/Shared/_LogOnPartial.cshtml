@@ -1,0 +1,17 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <text>
+        ¡Bienvenido <strong>@Session["NombreUsuario"]</strong>!&nbsp;&nbsp;&nbsp;         
+        @Html.ActionLink("Cerrar sesión", "LogOff", "Account", new { Area = "" }, null) 
+    </text>
+    <br />
+    <text>
+        <strong>@Session["NombreEmpresa"]</strong>
+    </text>
+    }
+    else
+    {
+    @Html.ActionLink("Iniciar sesión", "LogOn", "Account", new { Area = "" }, null)
+}
+
+

@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SiggoData" Class="DAOrdenServicioDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAP-LENOVO;Initial Catalog=SiggoData;Persist Security Info=True;User ID=usr_siggo" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString3" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_LISTAR_CONTRATAS" Method="SP_LISTAR_CONTRATAS">
+    <Parameter Name="Identificador" Parameter="identificador" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IDUSUARIO" Parameter="iDUSUARIO" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_LISTAR_CONTRATASResult">
+      <Column Name="IDEMPRESA" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="RAZONSOCIAL" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_LISTAR_ORDENES" Method="SP_LISTAR_ORDENES">
+    <Parameter Name="Filtro" Parameter="filtro" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_LISTAR_ORDENESResult">
+      <Column Name="NroOrden" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoCliente" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoContratista" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Contratista" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoSubContratista" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="SubContratista" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaControlInicio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaControlFin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaMovimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_MANT_REG_ORDEN_SERVICIO_AREAS" Method="SP_MANT_REG_ORDEN_SERVICIO_AREAS">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NroOrden" Parameter="nroOrden" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="CodigoDpto" Parameter="codigoDpto" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="NombreDpto" Parameter="nombreDpto" Type="System.String" DbType="VarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_MANT_REG_ORDEN_SERVICIO_CONTRATAS" Method="SP_MANT_REG_ORDEN_SERVICIO_CONTRATAS">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NroOrden" Parameter="nroOrden" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="IdContrata" Parameter="idContrata" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdSubContrata" Parameter="idSubContrata" Type="System.String" DbType="VarChar(5)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_MANT_REG_ORDEN_SERVICIO_LOCALIZACION" Method="SP_MANT_REG_ORDEN_SERVICIO_LOCALIZACION">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NroOrden" Parameter="nroOrden" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="CodigoSede" Parameter="codigoSede" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="DescripcionSede" Parameter="descripcionSede" Type="System.String" DbType="VarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_OBTENER_DATOS_ORDEN_SERVICIO" Method="SP_OBTENER_DATOS_ORDEN_SERVICIO">
+    <Parameter Name="IDEMPRESA" Parameter="iDEMPRESA" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NROORDEN" Parameter="nROORDEN" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_OBTENER_DATOS_ORDEN_SERVICIOResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="NroOrden" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaRealInicio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaRealFin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaControlInicio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaControlFin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaProceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HoraProceso" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ProcesadoPor" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaCierre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HoraCierre" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CerradoPor" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaRegistro" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HoraRegistro" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="RegistradoPor" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_OBTENER_DATOS_OS_AREA" Method="SP_OBTENER_DATOS_OS_AREA">
+    <Parameter Name="IDEMPRESA" Parameter="iDEMPRESA" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NROORDEN" Parameter="nROORDEN" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_OBTENER_DATOS_OS_AREAResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="NroOrden" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoDpto" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NombreDpto" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_OBTENER_DATOS_OS_CONTRATA" Method="SP_OBTENER_DATOS_OS_CONTRATA">
+    <Parameter Name="IDEMPRESA" Parameter="iDEMPRESA" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NROORDEN" Parameter="nROORDEN" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_OBTENER_DATOS_OS_CONTRATAResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="NroOrden" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IdContrata" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrata" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdSubContrata" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="SubContrata" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_OBTENER_DATOS_OS_SEDE" Method="SP_OBTENER_DATOS_OS_SEDE">
+    <Parameter Name="IDEMPRESA" Parameter="iDEMPRESA" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NROORDEN" Parameter="nROORDEN" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_OBTENER_DATOS_OS_SEDEResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="NroOrden" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoSede" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionSede" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_MANT_REG_ORDEN_SERVICIO" Method="SP_MANT_REG_ORDEN_SERVICIO">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NroOrden" Parameter="nroOrden" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="FechaRealInicio" Parameter="fechaRealInicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaRealFin" Parameter="fechaRealFin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaControlInicio" Parameter="fechaControlInicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaControlFin" Parameter="fechaControlFin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NroOrdenRetorno" Parameter="nroOrdenRetorno" Type="System.String" DbType="Char(10)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_LISTAR_PERIODOS_GENERADOS" Method="SP_LISTAR_PERIODOS_GENERADOS">
+    <Parameter Name="NroOrden" Parameter="nroOrden" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Contratista" Parameter="contratista" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Mes" Parameter="mes" Type="System.String" DbType="Char(2)" />
+    <Parameter Name="Anho" Parameter="anho" Type="System.String" DbType="Char(4)" />
+    <ElementType Name="SP_LISTAR_PERIODOS_GENERADOSResult">
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="NroOrden" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Contratista" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Mes" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="NombreMes" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Año" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Situacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="EsContratista" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Empleados" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Vehiculos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Web" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_LISTAR_ORDENES_SERVICIO" Method="SP_LISTAR_ORDENES_SERVICIO">
+    <Parameter Name="NroOrden" Parameter="nroOrden" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Contratista" Parameter="contratista" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_LISTAR_ORDENES_SERVICIOResult">
+      <Column Name="NroOrden" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoCliente" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoContratista" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Contratista" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoSubContratista" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="SubContratista" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaControlInicio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaControlFin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaMovimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_GEN_DOCUMENTACION_MENSUAL" Method="SP_GEN_DOCUMENTACION_MENSUAL">
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NroOrden" Parameter="nroOrden" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="MesVigente" Parameter="mesVigente" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="AnhoVigente" Parameter="anhoVigente" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="RegistradoPor" Parameter="registradoPor" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_DEL_DOCUMENTACION_MENSUAL" Method="SP_DEL_DOCUMENTACION_MENSUAL">
+    <Parameter Name="Contratista" Parameter="contratista" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NroOrden" Parameter="nroOrden" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Mes" Parameter="mes" Type="System.String" DbType="Char(2)" />
+    <Parameter Name="Anho" Parameter="anho" Type="System.String" DbType="Char(4)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

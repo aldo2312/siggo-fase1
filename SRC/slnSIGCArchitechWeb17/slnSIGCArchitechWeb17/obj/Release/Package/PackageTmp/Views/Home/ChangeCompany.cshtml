@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Elegir Empresa";
+}
+
+<h2>Elegir una Empresa</h2>
+
+<div id="Aviso"> Estimado Usuario, para cargar información al sistema debe seleccionar la empresa de trabajo.</div>
+<br />
+@using (Html.BeginForm())
+{
+    <div>
+        <fieldset>
+            <legend>Seleccione una Empresa</legend>
+
+            <div class="editor-label">
+                @Html.Label("Empresa")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("Empresas", null, "(Seleccione)", new { style = "width:350px;" })
+            </div>
+            <p>
+                <input type="submit" value="Aceptar" />
+            </p>          
+
+            @Html.Raw("(*) Empresa Cliente")
+            <br />
+            @Html.Raw("(**) Empresa Contratista / SubContratista")
+        </fieldset>
+    </div>
+}
+

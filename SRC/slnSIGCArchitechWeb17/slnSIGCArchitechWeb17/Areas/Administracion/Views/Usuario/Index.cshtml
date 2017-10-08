@@ -1,0 +1,106 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Administracion.Models.UsuarioWebModel
+@{
+    ViewBag.Title = "SisGpdWeb - Administración de Usuarios";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Administración de Usuarios</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Get, null))
+{
+    <div class="Titulo">
+        Empresa: @Html.DropDownListFor(m => m.IdEmpresaSel, new SelectList(Model.lEmpresas, "Codigo", "Descripcion"), "(Todos)", new { style = "width:450px;" })
+    </div>
+    <br />
+    <div id="newUser" style="@Html.Raw(String.IsNullOrEmpty(Model.IdEmpresaSel) ? "visibility:hidden" : "")">
+        @Html.ActionLink("Crear Usuario", "Editar", "Usuario", null, new { @id = "lnkUsuario" })
+    </div>
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Id.Usuario")</td>
+                <td>@Html.TextBox("IdUsuarioWeb") </td>
+                <td>@Html.Label("Nombre")</td>
+                <td>@Html.TextBox("NombreUsuarioWeb")</td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Buscar" />
+        <input type="button" value="Limpiar" />
+    </fieldset>
+    <br />
+    @*<div>@Html.HiddenFor(m => m.TipoEmpresaSiggo)</div>*@
+    <div>@Html.HiddenFor(m => m.NombreEmpresaSel)</div>
+}
+@if (Model.lRegistrosUsuarios != null)
+{
+    if (Model.lRegistrosUsuarios.Count() > 0)
+    {
+        WebGrid wgUsuarios = new WebGrid(Model.lRegistrosUsuarios, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+        if (wgUsuarios.SelectedIndex < 0)
+        {
+            wgUsuarios.SelectedIndex = 0;
+        }
+        var gridColumnas = new List<WebGridColumn>();
+        gridColumnas.Add(wgUsuarios.Column("IdUsuario", header: "Id", format: (item) => item.GetSelectLink(item.IdUsuario)));
+        gridColumnas.Add(wgUsuarios.Column("NombreUsuario", header: "Usuario", canSort: false, style: ""));
+        gridColumnas.Add(wgUsuarios.Column("CorreoElectronico", header: "Correo", canSort: false, style: ""));
+        gridColumnas.Add(wgUsuarios.Column("UsuarioSiggo", header: "Usuario SIGGO", canSort: false, style: ""));
+        gridColumnas.Add(wgUsuarios.Column("EmpresaAsociada", header: "Empresa", canSort: false, style: ""));
+        gridColumnas.Add(wgUsuarios.Column("TipoEmpresaSiggo", header: "Tipo Empresa", canSort: false, style: ""));
+        gridColumnas.Add(wgUsuarios.Column("Estado", header: "Estado", canSort: false, style: ""));
+        gridColumnas.Add(wgUsuarios.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+        gridColumnas.Add(wgUsuarios.Column("Editar", header: "", format: (item) => @Ajax.ActionLink("Modificar", "Editar", "Usuario", new { Id = item.IdUsuario, IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.EmpresaAsociada }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+        gridColumnas.Add(wgUsuarios.Column("Eliminar", header: "", format: (item) => @Html.ActionLink("Eliminar", "Eliminar", new { Id = item.IdUsuario, IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.EmpresaAsociada }, new { id = "Eliminar", onclick = "return confirm('¿Esta seguro de Eliminar el Usuario " + item.IdUsuario + " ?');" }), canSort: false, style: ""));
+        gridColumnas.Add(wgUsuarios.Column("Resetear", header: "", format: (item) => @Html.ActionLink("Resetear", "Resetear", new { Id = item.IdUsuario, IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.EmpresaAsociada }, new { id = "Resetear", onclick = "return confirm('¿Esta seguro de Resetear la Contraseña del Usuario " + item.IdUsuario + " ?');" }),
+        canSort: false, style: ""));
+        @wgUsuarios.GetHtml(
+                    rowStyle: "webgrid-row-style",
+                    selectedRowStyle: "webgrid-selected-row",
+                    htmlAttributes: new { id = "MainTable" },
+
+                    mode: WebGridPagerModes.All,
+                    firstText: "<< Primera",
+                    previousText: "< Anterior",
+                    nextText: "Siguiente >",
+                    lastText: "Última >>",
+                    columns: wgUsuarios.Columns(gridColumnas.ToArray())
+                );
+    }
+    else
+    {
+        <div id="No">No existen registros</div>
+    }
+}
+@if (ViewBag.Mensaje != null)
+{
+    <br />
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script type="text/javascript">
+    $('#IdEmpresaSel').change(function () {
+        ctrl = document.getElementById("newUser");
+        var textSelected = $('#IdEmpresaSel Option:Selected').text();
+        $('#NombreEmpresaSel').val(textSelected);
+        //alert($('#NombreEmpresaSel').val());
+        if ($(this).val() == "") {
+            ctrl.style.visibility = "hidden";
+        } else {
+            ctrl.style.visibility = "visible";
+        }
+    });
+
+    $('#lnkUsuario').click(function () {
+        var IdEmpresaSel = $('#IdEmpresaSel').val();
+        var NombreEmpresaSel = $('#NombreEmpresaSel').val();
+        var url2 = $(this).attr('href') + '?IdEmpresaSel=' + IdEmpresaSel + '&NombreEmpresaSel=' + NombreEmpresaSel;
+        $('#lnkUsuario').attr('href', url2);
+    });
+    
+</script>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SiggoData" Class="DADeclaracionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAP-LENOVO;Initial Catalog=SiggoData;Persist Security Info=True;User ID=usr_siggo" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString3" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_LISTAR_DECLARACIONES_DOCUMENTOS" Method="SP_LISTAR_DECLARACIONES_DOCUMENTOS">
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_LISTAR_DECLARACIONES_DOCUMENTOSResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="IdRegistro" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NroSecuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdTipoServicio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoServicio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdTipoDocumento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NivelRiesgo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DescripcionArchivo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Frecuencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaDocumento" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaVencimiento" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="IdImagen" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Evidencia" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Detalle" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_UPD_DOCUMENTACION_MENSUAL" Method="SP_UPD_DOCUMENTACION_MENSUAL">
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NroSecuencia" Parameter="nroSecuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaPresentacion" Parameter="fechaPresentacion" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Detalle" Parameter="detalle" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="NombreArchivo" Parameter="nombreArchivo" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="PesoKb" Parameter="pesoKb" Type="System.Int32" DbType="Int" />
+    <Parameter Name="RegistradoPor" Parameter="registradoPor" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_UPD_DOCUMENTACIONDATO_MENSUAL" Method="SP_UPD_DOCUMENTACIONDATO_MENSUAL">
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NroSecuencia" Parameter="nroSecuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdDato" Parameter="idDato" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ls_valor_texto" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="ln_valor_entero" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ldc_valor_decimal" Type="System.Decimal" DbType="Decimal(14,2)" />
+    <Parameter Name="dt_valor_fecha" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="bt_valor_bool" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="RegistradoPor" Parameter="registradoPor" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_LISTAR_DECLARACIONES" Method="SP_LISTAR_DECLARACIONES">
+    <Parameter Name="NroOrden" Parameter="nroOrden" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Contratista" Parameter="contratista" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Mes" Parameter="mes" Type="System.String" DbType="Char(2)" />
+    <Parameter Name="Anho" Parameter="anho" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="TipoRecurso" Parameter="tipoRecurso" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="nPag" Type="System.Int32" DbType="Int" />
+    <Parameter Name="nNumxPag" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_LISTAR_DECLARACIONESResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="IdRegistro" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Empresa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdRecurso" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Recurso" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NroReferenciaRecurso" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NUMREG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TOTPAG" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="TOTREG" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

@@ -1,0 +1,150 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Procesos.Models.DeclaracionDetalleModel
+@{
+    ViewBag.Title = "Registrar Declaración";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Registrar Declaración</h2>
+@using (Html.BeginForm())
+{
+<div>@Html.HiddenFor(m => m.IdEmpresaSel, null)</div>
+<div>@Html.HiddenFor(m => m.IdRegistroSel, null)</div>
+<div>@Html.HiddenFor(m => m.NroSecuenciaSel, null)</div>
+
+    if (Model.lDocumentos != null)
+    {
+        if (Model.lDocumentos.Count > 0)
+        {
+            <fieldset>
+                <legend>Datos del Registro</legend>
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#carga"><span>Cargar Documento</span></a></li>
+                        <li><a href="#datos"><span>Validar Datos</span></a></li>
+                    </ul>
+                    <div id="carga">
+                        <div id="divCarga-Edit">
+                            <fieldset>
+                                <h4>Datos Generales</h4>
+                                <table class="tablaForm">
+                                    <tr>
+                                        <td>Fecha Presentacion:</td>
+                                        <td>@Html.TextBoxFor(m => Model.FechaPresentacion, new { @class = "datepicker", style = "width:120px;", @readonly = true })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fecha Vencimiento:</td>
+                                        <td>@Html.TextBoxFor(m => Model.lDocumentos[0].FechaVencimiento, new { @class = "datepicker", style = "width:120px;", @readonly = true })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombre:</td>
+                                        <td>@Html.TextBoxFor(m => Model.lDocumentos[0].DescripcionArchivo, new { style = "width:350px;", maxlength = 50, @readonly = true })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Detalle:</td>
+                                        <td>@Html.TextAreaFor(m => Model.Observacion, new { style = "width:350px;", maxlength = 100 })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seleccionar Archivo:</td>
+                                        <td>
+                                            <div id="dropbox_f">
+                                                <input type="file" name="photo_f" id="photo_f" />
+                                            </div>
+                                            @if (!String.IsNullOrEmpty(Model.ImagenSel))
+                                            {
+                                                @Html.DisplayFor(m => Model.ImagenSel, new { id = "imgEditar", style = "width:350px;", maxlength = 100 })
+                                            }
+                                            @Html.HiddenFor(m => Model.ImagenSel)
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="datos">
+                        <div id="divDatos-Edit">
+                            <fieldset>
+                                <h4>Valores Requisito</h4>
+                                <table class="tablaForm">
+                                    <tr>
+                                        <th style="width:70px">Datos Obligatorios</th>
+                                        <th style="width:60px">Valor a Validar</th>
+                                    </tr>
+                                   
+                                @{
+                                        for (int i = 0; i < Model.lDatosAsociados.Count(); i++)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.HiddenFor(m => m.lDatosAsociados[i].Codigo)
+                                                    @Html.HiddenFor(m => m.lDatosAsociados[i].Categoria)
+                                                    @Html.DisplayFor(m => m.lDatosAsociados[i].DescripcionDato)
+                                                </td>
+                                                <td>
+                                                    @switch (Model.lDatosAsociados[i].Categoria)
+                                                    {
+                                                        case Helper.TiposDatos.Texto:
+                                                            @Html.TextBoxFor(m=>m.lDatosAsociados[i].ValorActual, new { style = "width:120px;", maxlength = 50 })
+                                                            break;
+                                                        case Helper.TiposDatos.Decimal:
+                                                            @Html.TextBoxFor(m => m.lDatosAsociados[i].ValorActual, new { style = "width:120px;", maxlength = 10 })
+                                                            break;
+                                                        case Helper.TiposDatos.Numerico:
+                                                            @Html.TextBoxFor(m => m.lDatosAsociados[i].ValorActual, new { style = "width:120px;", maxlength = 5 })
+                                                            break;
+                                                        case Helper.TiposDatos.Fecha:
+                                                            @Html.TextBoxFor(m => m.lDatosAsociados[i].ValorActual, new { @class = "datepicker", style = "width:120px;", maxlength = 10 })
+                                                            break;
+                                                        case Helper.TiposDatos.Booleano:
+                                                            @Html.CheckBoxFor(m => m.lDatosAsociados[i].ValorActual.Equals(1) ? true : false)
+                                                            break;
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+            <br />
+            <input id="btnEnviar" type="submit" name="Guardar" value="Guardar" />
+        }
+                                                        }
+    <input type="button" value="Cancelar" onclick="history.back()" />
+}
+
+@if (ViewBag.Mensaje != null)
+                                                    {
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+    <br />
+}
+@if (ViewBag.Error != null)
+                                                    {
+    <div id="Error">@ViewBag.Error</div>
+    <br />
+}
+<script src="~/Scripts/jquery.filedrop.js" type="text/javascript"></script>
+<script src="~/Scripts/upload-siggo.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(".datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
+
+    $(function () {
+        $("#tabs").tabs();
+    });
+
+    UploadPhoto({
+        dropSelector: '#dropbox_f',
+        valueFile: '#ImagenSel',
+        fileId: 'photo_f',
+        url: '../../UploadImage/Index'
+    });
+
+</script>

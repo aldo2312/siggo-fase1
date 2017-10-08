@@ -1,0 +1,79 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Mantenimientos.Models.TipoServicioWebModel
+@{
+    ViewBag.Title = "Administración de Tipos de Servicio";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Administración de Tipos de Servicio</h2>
+<div>
+    @Html.ActionLink("Crear Tipo de Servicio", "Editar", "TipoServicio")
+
+</div>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Identificador")</td>
+                <td>@Html.TextBox("IdTipoServicio") </td>
+                <td>@Html.Label("Descripción")</td>
+                <td>@Html.TextBox("DescripcionServicio")</td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Buscar" />
+        <input type="button" value="Limpiar" onclick="Limpiar()" />
+    </fieldset>
+    <br />
+}
+
+@if (Model.lRegistrosTipoServicio.Count() > 0)
+{
+    WebGrid wbTipoServicio = new WebGrid(Model.lRegistrosTipoServicio, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+    if (wbTipoServicio.SelectedIndex < 0)
+    {
+        wbTipoServicio.SelectedIndex = 0;
+    }
+    var gridColumnas = new List<WebGridColumn>();
+    gridColumnas.Add(wbTipoServicio.Column("Identificador", header: "Id", format: (item) => item.GetSelectLink(item.IdTipoServicio)));
+    gridColumnas.Add(wbTipoServicio.Column("Descripcion", header: "Descripción", canSort: false, style: ""));
+    gridColumnas.Add(wbTipoServicio.Column("Estado", header: "Estado", canSort: false, style: ""));
+    gridColumnas.Add(wbTipoServicio.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+    gridColumnas.Add(wbTipoServicio.Column("Editar", header: "", format: (item) => @Ajax.ActionLink("Modificar", "Editar", "TipoServicio", new { Id = item.IdTipoServicio }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+    gridColumnas.Add(wbTipoServicio.Column("Eliminar", header: "", format: (item) => @Html.ActionLink("Eliminar", "Eliminar", new { Id = item.IdTipoServicio }, new { id = "Eliminar", onclick = "return confirm('¿Esta seguro de Eliminar el Tipo Servicio " + item.IdTipoServicio + " ?');" }), canSort: false, style: ""));    
+
+    @wbTipoServicio.GetHtml(
+            rowStyle: "webgrid-row-style",
+            selectedRowStyle: "webgrid-selected-row",
+            htmlAttributes: new { id = "MainTable" },
+
+            mode: WebGridPagerModes.All,
+            firstText: "<< Primera",
+            previousText: "< Anterior",
+            nextText: "Siguiente >",
+            lastText: "Última >>",
+            columns: wbTipoServicio.Columns(gridColumnas.ToArray())
+        );
+}
+else
+{
+    <div id="No">No existen registros</div>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <br />
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script>
+    function Limpiar() {
+        var txt = document.getElementById('IdTipoServicio'); txt.value = "";
+        var txt = document.getElementById('DescripcionServicio'); txt.value = "";
+    }
+</script>

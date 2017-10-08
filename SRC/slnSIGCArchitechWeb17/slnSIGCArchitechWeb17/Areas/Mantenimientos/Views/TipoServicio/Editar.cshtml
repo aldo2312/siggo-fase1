@@ -1,0 +1,78 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Mantenimientos.Models.TipoServicioWebModel
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+@Html.Hidden("myUrl", Url.Action("Index", "TipoServicio"))
+
+@if (Model.NuevoRegistro)
+{
+    <h2>Nuevo Tipo Servicio</h2>
+}
+else
+{
+    <h2>Editar Tipo Servicio : @Model.IdTipoServicio</h2>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.NuevoRegistro)
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.LabelFor(m => m.IdTipoServicio)*</td>
+                <td>
+                    @if (Model.NuevoRegistro)
+                    {
+                        @Html.TextBoxFor(m => m.IdTipoServicio, new { @Value = "?????", style = "width:80px;", disabled = "true" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.IdTipoServicio, new { style = "width:80px;", disabled = "true" })
+                    }
+                    @Html.HiddenFor(m => m.IdTipoServicio)
+                    @Html.ValidationMessageFor(m => m.IdTipoServicio)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Descripcion)*</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Descripcion, new { style = "width:450px;", maxlength = 50 })
+                    @Html.ValidationMessageFor(m => m.Descripcion)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fecha Registro")</td>
+                <td>@Html.TextBoxFor(m => m.FechaMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Hora Registro")</td>
+                <td>@Html.TextBoxFor(m => m.HoraMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Registrado Por")</td>
+                <td>@Html.TextBoxFor(m => m.Maker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <div>
+        <input type="submit" value="Grabar" />
+        <input type="button" value="Cancelar" onclick="return Cancelar();" />
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script type="text/javascript">
+    function Cancelar() {
+        var url = $("#myUrl").val();
+        window.location.href = url;
+    }
+</script>

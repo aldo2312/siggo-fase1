@@ -1,0 +1,12 @@
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Release\Siggo.SIGC.BusinessLogic.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Release\Siggo.SIGC.BusinessLogic.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Release\Siggo.SIGC.DataAccess.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Release\Siggo.SIGC.Entity.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Release\Siggo.SIGC.Util.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Release\Siggo.SIGC.DataAccess.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Release\Siggo.SIGC.DataAccess.dll.config
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Release\Siggo.SIGC.Entity.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\bin\Release\Siggo.SIGC.Util.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Release\Siggo.SIGC.BusinessLogic.csprojResolveAssemblyReference.cache
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Release\Siggo.SIGC.BusinessLogic.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.BusinessLogic\obj\Release\Siggo.SIGC.BusinessLogic.pdb

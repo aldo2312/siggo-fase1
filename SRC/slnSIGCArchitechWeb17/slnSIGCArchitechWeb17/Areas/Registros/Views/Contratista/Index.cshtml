@@ -1,0 +1,96 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Registros.Models.EmpresaWebModel
+@{
+    ViewBag.Title = "Administración de Contratista";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Administración de Contratistas</h2>
+@if (Session["TipoEmpresaSiggo"].ToString() != "CONTRATISTA")
+{
+    <div>
+        @Html.ActionLink("Crear Contratista", "Editar", "Contratista", new { TipoEmpresaSiggo = "CONTRATISTA" }, null)
+    </div>
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Get, null))
+{
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Identificador")</td>
+                <td>@Html.TextBox("IdContratista") </td>
+                <td>@Html.Label("Nombre")</td>
+                <td>@Html.TextBox("NombreEmpresa")</td>
+                <td>@Html.Label("Tipo Empresa")</td>
+                <td>@Html.DropDownList("TipoEmpresa", null, "(Todos)", new { style = "width:250px;" })</td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Buscar" />
+        <input type="button" value="Limpiar" onclick="Limpiar()" />
+    </fieldset>
+    <br />
+}
+
+@if (Model.lRegistrosEmpresas.Count() > 0)
+{
+    WebGrid wbContratistas = new WebGrid(Model.lRegistrosEmpresas, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+    if (wbContratistas.SelectedIndex < 0)
+    {
+        wbContratistas.SelectedIndex = 0;
+    }
+    var gridColumnas = new List<WebGridColumn>();
+    gridColumnas.Add(wbContratistas.Column("Identificador", header: "Id", format: (item) => item.GetSelectLink(item.IdEmpresa)));
+    gridColumnas.Add(wbContratistas.Column("RucEmpresa", header: "RUC", canSort: false, style: ""));
+    gridColumnas.Add(wbContratistas.Column("RazonSocial", header: "Razon Social", canSort: false, style: ""));
+    gridColumnas.Add(wbContratistas.Column("TipoEmpresa", header: "Tipo Empresa", canSort: false, style: ""));
+    gridColumnas.Add(wbContratistas.Column("EmpresaAsociada", header: "Contratista de", canSort: false, style: ""));
+    gridColumnas.Add(wbContratistas.Column("Estado", header: "Estado", canSort: false, style: ""));
+    gridColumnas.Add(wbContratistas.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+    gridColumnas.Add(wbContratistas.Column("Editar", header: "", format: (item) => @Ajax.ActionLink("Modificar", "Editar", "Contratista", new { Id = item.IdEmpresa, TipoEmpresaSiggo = "CONTRATISTA" }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+    gridColumnas.Add(wbContratistas.Column("Eliminar", header: "", format: (item) => @Html.ActionLink("Eliminar", "Eliminar", new { Id = item.IdEmpresa }, new { id = "Eliminar", onclick = "return confirm('¿Esta seguro de Eliminar el Contratista " + item.IdEmpresa + " ?');" }), canSort: false, style: ""));
+    gridColumnas.Add(wbContratistas.Column("Empleados", header: "", format: (item) => @Ajax.ActionLink("Empleados", "Empleados", "Contratista", new { IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.RazonSocial }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+    gridColumnas.Add(wbContratistas.Column("Transporte", header: "", format: (item) => @Ajax.ActionLink("Vehículos", "Vehiculos", "Contratista", new { IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.RazonSocial }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+    //gridColumnas.Add(wbContratistas.Column("Documentación", header: "", format: (item) => @Ajax.ActionLink("Documentación", "Documentos", "Contratista", new { IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.RazonSocial }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+
+    @wbContratistas.GetHtml(
+            rowStyle: "webgrid-row-style",
+            selectedRowStyle: "webgrid-selected-row",
+            htmlAttributes: new { id = "MainTable" },
+
+            mode: WebGridPagerModes.All,
+            firstText: "<< Primera",
+            previousText: "< Anterior",
+            nextText: "Siguiente >",
+            lastText: "Última >>",
+            columns: wbContratistas.Columns(gridColumnas.ToArray())
+        );
+
+    if (wbContratistas.HasSelection)
+    {
+        Html.RenderAction("Usuarios", "Contratista", new { area = "Registros", IdEmpresaSel = wbContratistas.SelectedRow["IdEmpresa"].ToString(), NombreEmpresaSel = wbContratistas.SelectedRow["RazonSocial"].ToString(), TipoEmpresaSiggo = "CONTRATISTA" });
+    }
+}
+else
+{
+    <div id="No">No existen registros</div>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <br />
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script>
+    function Limpiar() {
+        var txt = document.getElementById('IdContratista'); txt.value = "";
+        var txt = document.getElementById('NombreEmpresa'); txt.value = "";
+        var cbo = document.getElementById('TipoEmpresa'); cbo[0].selected = true;
+    }
+</script>

@@ -1,0 +1,597 @@
+﻿/*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}*/
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body {
+    /*background-color: #5c87b2;*/
+    background-color: #CCCCCC;
+    font-size: .75em;
+    font-family: "Arial, Helvetica, Sans-Serif";
+    margin: 0;
+    padding: 0;
+    color: #696969;
+}
+
+a:link {
+    color: #03427A;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #03427A;
+}
+
+a:hover {
+    color: #1d60ff;
+    text-decoration: none;
+}
+
+a:active {
+    color: #0431B4;
+}
+
+p, ul {
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #000;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    padding: 0 0 0 0;
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header, #header {
+    position: relative;
+    color: #000;
+    background-color: #fff;
+    height: 90px;
+    margin-bottom: 10px;
+    /*para Firefox*/
+    -moz-border-radius: 8px 8px 8px 8px;
+    /*para Safari y Chrome*/
+    -webkit-border-radius: 8px 8px 8px 8px;
+    /* para Opera */
+    border-radius: 8px 8px 8px 8px;
+    /* para IE */
+    behavior: url(border.htc);
+    box-shadow: 2px 2px 5px #000000;
+}
+
+    header h1, #header h1 {
+        font-weight: normal;
+        padding: 5px 0 0 10px;
+        margin: 0;
+        color: #0B2161;
+        border: none;
+        line-height: 2em;
+        font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 20px !important;
+    }
+
+#main {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    padding: 0.2px 30px 10px 30px;
+    background-color: #fff;
+    /*para Firefox*/
+    -moz-border-radius: 8px 8px 8px 8px;
+    /*para Safari y Chrome*/
+    -webkit-border-radius: 8px 8px 8px 8px;
+    /* para Opera */
+    border-radius: 8px 8px 8px 8px;
+    /* para IE */
+    behavior: url(border.htc);
+    box-shadow: 2px 2px 5px #000000;
+}
+
+footer, #footer {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    background-color: #808080; /*background-color: #03427A;*/
+    color: #fff;
+    font-size: 1.1em;
+    height: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    position: absolute;
+    margin: 0;
+    padding: 0 0 0 0;
+    right: 0;
+    bottom: 0;
+    margin-right: 0;
+}
+
+.nav > li {
+    list-style: none;
+    float: left;
+}
+
+.nav li a {
+    background: #999999;
+    color: #FFFFFF;
+    display: block;
+    padding: 2px 15px;
+    text-decoration: none;
+}
+
+    .nav li a:hover {
+        background: #F3F3F3;
+        color: #FF9900;
+    }
+
+.nav li {
+    position: relative;
+}
+
+    .nav li ul {
+        border-width: 0.0px;
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        list-style: none;
+    }
+
+    .nav li:hover > ul {
+        display: block;
+    }
+
+    .nav li ul li ul {
+        right: -240px;
+        top: 0;
+    }
+
+    .nav li .flecha {
+        padding-left: 6px;
+        display: none;
+    }
+
+    .nav li a:not(:last-child) .flecha {
+        display: inline;
+    }
+
+nav,
+#menucontainer {
+    margin-top: 5px;
+}
+
+.nav li .submenu {
+    background: #F3F3F3;
+    color: #00CC99;
+    font-weight: bold;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset {
+    border: 1px solid #03427A;
+    padding: 0.5em 1.2em 0.5em 1.2em;
+    margin: 0 0 0 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 150px;
+    border: 1px solid #CCC;
+}
+
+input[type="submit"],
+input[type="button"] {
+    background: #f2f2f2;
+    border-style: groove;
+    height: 35px;
+    font-family: arial,sans-serif;
+    font-weight: bold;
+    color: #757575;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: #f8f8f8;
+    border-style: groove;
+    height: 35px;
+    font-family: arial,sans-serif;
+    font-weight: bold;
+    color:#222;
+}
+
+select {
+    border: 1px solid #03427A;
+    padding: 2px;
+    font-size: 1.0em;
+    color: #03427A;
+}
+
+
+/* TABLE
+----------------------------------------------------------*/
+
+table {
+    border: solid 1px #999999;
+    border-collapse: collapse;
+}
+
+    table td {
+        padding: 2px 5px;
+        border: solid 1px #999999;
+        color: #000000;
+    }
+
+    table th {
+        padding: 2px 5px;
+        text-align: left;
+        background-color: #999999;
+        border: solid 1px #999999;
+        color: #ffffff;
+    }
+
+.tablaForm {
+    border: 0;
+    border-collapse: collapse;
+}
+
+    .tablaForm td {
+        padding: 5px;
+        border: 0;
+        color: #03427A;
+    }
+
+
+
+/* MISC  
+----------------------------------------------------------*/
+.clear {
+    clear: both;
+}
+
+.error {
+    color: Red;
+}
+
+
+
+div#title {
+    display: block;
+    float: left;
+    text-align: left;
+    height: 60px;
+    padding: 10px 0 0 10px;
+}
+
+#logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 0;
+}
+
+#logindisplay {
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    margin: 10px;
+    color: Black;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+    #logindisplay a:link {
+        color: #03427A;
+        text-decoration: underline;
+    }
+
+    #logindisplay a:visited {
+        color: #03427A;
+        text-decoration: none;
+    }
+
+    #logindisplay a:hover {
+        color: #03427A;
+        text-decoration: none;
+    }
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label,
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.display-field,
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+.text-box {
+    width: 30em;
+}
+
+    .text-box.multi-line {
+        height: 6.5em;
+    }
+
+.tri-state {
+    width: 6em;
+}
+
+
+/*Estilos para la grilla */
+/*Persona*/
+.csNumeroDoi {
+    width: 80px;
+}
+
+.csCodigoTrabajador {
+    width: 50px;
+}
+
+.csApellido {
+    width: 100px;
+}
+
+.csNombres {
+    width: 150px;
+}
+
+.csNombres {
+    width: 150px;
+}
+
+.csNombreRazon {
+    width: 300px;
+}
+
+.csEstado {
+    width: 40px;
+}
+
+
+/*Legajos*/
+.csTipoLegajo {
+    width: 20px;
+}
+
+.csCodigoIM {
+    width: 60px;
+}
+
+.csFechaRecojo {
+    width: 70px;
+}
+
+/*Documentos*/
+.IdTipoDocumento {
+    width: 60px;
+}
+
+.Descripcion {
+    width: 350px;
+}
+
+.FechaDocumento {
+    width: 70px;
+}
+
+
+/*Pedidos*/
+.csNombre {
+    width: 250px;
+}
+
+.csObservacion {
+    width: 350px;
+}
+
+/*Reg_Clientes*/
+.csTipoNumeroDoi {
+    width: 100px;
+}
+
+.csNombreComercial {
+    width: 150px;
+}
+
+csCodigoCliente {
+    width: 50px;
+}
+
+.webgrid-selected-row {
+    font-weight: bold;
+    background: #fffacd
+    /*background: #C3EBF7*/
+}
+
+.webgrid-row-style {
+    height: 8px;
+}
+
+
+.layer1 {
+    margin: 0;
+    padding: 0;
+    width: 20;
+}
+
+.heading {
+    font-weight: bold;
+    margin: 1px;
+    color: #045FB4;
+    padding: 2px 5px;
+    cursor: pointer;
+    position: relative;
+    background-color: #F3E2A9;
+    /*background-image: "../../Images/Legajo/separadora.jpg";*/
+}
+
+.content {
+    padding: 5px 18px;
+    background-color: #ffffff;
+}
+
+.headingLegajo {
+    font-weight: bold;
+    margin: 1px;
+    color: #045FB4;
+    padding: 2px 5px;
+    cursor: pointer;
+    position: relative;
+    background-color: White;
+    /*background-image: "../../Images/Legajo/separadora.jpg";*/
+}
+
+.contentLegajo {
+    padding: 5px 18px;
+    background-color: #ffffff;
+}
+
+p {
+    padding: 5px 0;
+}
+
+
+.clickable {
+    cursor: pointer;
+    /*background: #C3EBF7;*/
+}
+
+#Mensaje {
+    color: #0040FF;
+}
+
+.Mensaje {
+    color: #0040FF;
+}
+
+#Aviso {
+    color: #DF0101;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95em;
+}
+
+.Titulo {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#Error {
+    color: #DF0101;
+}
+
+.Error {
+    color: #DF0101;
+}
+
+.LinkButton {
+    background: #CEE3F6;
+    border-style: groove;
+}
+

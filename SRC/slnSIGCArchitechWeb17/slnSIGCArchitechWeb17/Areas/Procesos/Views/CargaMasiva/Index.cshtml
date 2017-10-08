@@ -1,0 +1,105 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Procesos.Models.DataEntidadModel
+@{
+    ViewBag.Title = "Declaración Masiva";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Carga Masiva</h2>
+
+@using (Html.BeginForm("Index", "CargaMasiva", FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{
+    <div id="carga">
+        <div id="divCarga-Edit">
+            <fieldset>
+                <h4>Datos Principales</h4>
+                <table class="tablaForm">
+                    <tr>
+                        <td>@Html.Label("Contratista")</td>
+                        <td>@Html.DropDownListFor(m => m.IdEmpresa, new SelectList(Model.lContratas, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:450px;" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.Label("Cliente")</td>
+                        <td>@Html.DropDownListFor(m => m.IdCliente, new SelectList(Model.lClientes, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:450px;" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.Label("Nro.Orden")</td>
+                        <td><select id="NroOrden" name="NroOrden" style="width:150px;"> <option value="">(Seleccione)</option></select></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.Label("Periodo") </td>
+                        <td>
+                            @Html.DropDownListFor(m => m.MesInformado, new SelectList(Model.lMeses, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:100px;" })
+                            @Html.DropDownListFor(m => m.AnhoInformado, new SelectList(Model.lAnhos, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:80px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.Label("Seleccione")</td>
+                        <td>
+                            <input type="file" name='file' id='file' style="width:350px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="btn-Carga" type="submit" value="Cargar" />
+                        </td>
+                    </tr>
+                   
+                </table>
+            </fieldset>
+        </div>
+        
+    </div>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <br />
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error"> @ViewBag.Error </div>
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#IdCliente").change(function () {
+            ObtenerOrdenes();
+        })
+    });
+    function ObtenerOrdenes() {
+        url = "/Procesos/Declaracion/ObtenerOrdenes";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            async: true,
+            data: {
+                IdEmpresaSel: $('#IdCliente').val().trim()
+            },
+            success: function (data) {
+                try {
+                    var obj = JSON.parse(data);
+                    var htmlOpOrdenes = '<option value="">(Seleccione)</option>';
+                    if (data != "-1" && data.length > 0) {
+                        for (var i = 0; i < obj.length; i++) {
+                            htmlOpOrdenes = htmlOpOrdenes + '<option value="' + obj[i].Codigo + '">' + obj[i].Descripcion + '</option>';
+                        }
+                        $('#NroOrden').empty();
+                        $("#NroOrden").append(htmlOpOrdenes);
+                    }
+                    else {
+                        alert("Ocurrió un problema al obtener las ORDENES");
+                    }
+                }
+                catch (e) {
+                    //alert(e);
+                }
+            },
+            error: function (xr, msg, e) {
+            }
+        });
+    }
+</script>

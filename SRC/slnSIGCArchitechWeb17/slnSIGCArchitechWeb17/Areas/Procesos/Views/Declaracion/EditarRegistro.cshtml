@@ -1,0 +1,241 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Procesos.Models.DeclaracionModel
+@{
+    ViewBag.Title = "Editar Registro";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+@if (Model.NuevoRegistro)
+{
+    <h2>Nuevo Registro</h2>
+}
+else
+{
+    <h2>Editar Registro : @Model.IdRegistro</h2>
+}
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.NuevoRegistro)
+    @Html.HiddenFor(m => m.IdRecurso)
+
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Identificador")</td>
+                <td>
+                    @Html.TextBoxFor(m => m.IdRegistro, new { style = "width:80px;", disabled = "true", maxlength = 10 })
+                    @Html.HiddenFor(m => m.IdRegistro)
+                    @Html.ValidationMessageFor(m => m.IdRegistro)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Contratista")</td>
+                <td>
+                    @if (Model.NuevoRegistro)
+                    {
+                        @Html.DropDownListFor(m => m.IdEmpresa, new SelectList(Model.lContratas, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:450px;" })
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(m => m.IdEmpresa, new SelectList(Model.lContratas, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:450px;", disabled = "true" })
+                    }
+                    @Html.HiddenFor(m => m.IdEmpresa)
+                    @Html.ValidationMessageFor(m => m.IdEmpresa)
+                </td>
+            </tr>            
+            <tr>
+                <td>@Html.Label("Cliente")</td>
+                <td>@Html.DropDownListFor(m => m.IdCliente, new SelectList(Model.lClientes, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:450px;" })</td> 
+            </tr>
+            <tr>
+                <td>@Html.Label("Nro.Orden")</td>
+                @*<td>@Html.DropDownListFor(m => m.NroOrden, new SelectList(Model.lOrdenesPorClientes, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:450px;" })</td>*@
+                <td><select id="NroOrden" name="NroOrden" style="width:150px;"> <option value="">(Seleccione)</option></select></td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(m => m.TipoRecurso) *</td>
+                <td>
+                    @Html.DropDownListFor(m => m.TipoRecurso, new SelectList(Model.lTipoRecurso, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:280px;" })
+                    @Html.ValidationMessageFor(m => m.TipoRecurso)
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.Label("Tipo Identificación") *</td>
+                <td>
+                    @Html.DropDownListFor(m => m.TipoDocumentoReferencia, new SelectList(Model.lTipoDoi, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:120px;" })
+                    @Html.ValidationMessageFor(m => m.TipoDocumentoReferencia)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Nro. Identificación") *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.NroReferenciaRecurso, new { style = "width:100px;", maxlength = 12 })
+                    @Html.ValidationMessageFor(m => m.NroReferenciaRecurso)
+                </td>
+            </tr>
+            @*DESCRIPCION EMPLEADO*@
+            <tr>
+                @*NOMBRES*@
+                <td>@Html.Label("Nombres") *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Descripcion003, new { style = "width:350px;", maxlength = 40 })
+                    @Html.ValidationMessageFor(m => m.Descripcion003)
+                </td>
+            </tr>
+            <tr>
+                @*AP PATERNO*@
+                <td>@Html.Label("Apellido Paterno") *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Descripcion001, new { style = "width:350px;", maxlength = 60 })
+                    @Html.ValidationMessageFor(m => m.Descripcion001)
+                </td>
+            </tr>
+            <tr>
+                @*AP MATERNO*@
+                <td>@Html.Label("Apellido Materno") *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Descripcion002, new { style = "width:350px;", maxlength = 60 })
+                    @Html.ValidationMessageFor(m => m.Descripcion002)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fec.Ingreso")</td>
+                <td>
+                    @Html.TextBoxFor(m => m.FechaIngreso, new { @class = "datepicker", style = "width:100px;", maxlength = 10 })
+                </td>
+            </tr>
+            @*DESCRIPCION VEHICULO*@
+            <tr>
+                <td>@Html.Label("Descripción General") *</td>
+                <td>
+                    @Html.TextBoxFor(m => m.DescripcionRecurso, new { style = "width:350px;", maxlength = 60 })
+                    @Html.ValidationMessageFor(m => m.DescripcionRecurso)
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.Label("Detalle") </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Observacion, new { style = "width:350px;", maxlength = 100 })
+                    @Html.ValidationMessageFor(m => m.Observacion)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Localidad") </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Localidad, new { style = "width:250px;", maxlength = 60 })
+                </td>
+            </tr>            
+
+            <tr>
+                <td>@Html.Label("Periodo") </td>
+                <td>
+                    @Html.DropDownListFor(m => m.MesInformado, new SelectList(Model.lMeses, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:100px;" })
+                    @Html.ValidationMessageFor(m => m.MesInformado)
+                </td>
+                <td>
+                    @Html.DropDownListFor(m => m.AnhoInformado, new SelectList(Model.lAnhos, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:80px;" })
+                    @Html.ValidationMessageFor(m => m.MesInformado)
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.Label("Estado Registro")</td>
+                <td>@Html.TextBoxFor(m => m.EstadoDescripcion, new { style = "width:150px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Fecha Registro")</td>
+                <td>@Html.TextBoxFor(m => m.FechaMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Hora Registro")</td>
+                <td>@Html.TextBoxFor(m => m.HoraMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Registrado Por")</td>
+                <td>@Html.TextBoxFor(m => m.Maker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <div>
+        <input type="submit" value="Grabar" />
+        <input type="button" value="Cancelar" onclick="history.back();" />
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#IdCliente").change(function () {
+            ObtenerOrdenes();
+        })
+    });
+    function ObtenerOrdenes() {
+        url = "/Procesos/Declaracion/ObtenerOrdenes";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            async: true,
+            data: {
+                IdEmpresaSel: $('#IdCliente').val().trim()
+            },
+            success: function (data) {
+                try {
+                    var obj = JSON.parse(data);
+                    var htmlOpOrdenes = '<option value="">(Seleccione)</option>';
+                    if (data != "-1" && data.length > 0) {
+                        for (var i = 0; i < obj.length; i++) {
+                            htmlOpOrdenes = htmlOpOrdenes + '<option value="' + obj[i].Codigo + '">' + obj[i].Descripcion + '</option>';
+                        }
+                        $('#NroOrden').empty();
+                        $("#NroOrden").append(htmlOpOrdenes);
+                    }
+                    else {
+                        alert("Ocurrió un problema al obtener las ORDENES");
+                    }
+                }
+                catch (e) {
+                    //alert(e);
+                }
+            },
+            error: function (xr, msg, e) {
+            }
+        });
+    }
+
+    $("#TipoRecurso").change(function () {
+        $('#Descripcion003 :input').attr('disabled', true);
+        $('#Descripcion002 :input').attr('disabled', true);
+        $('#Descripcion001 :input').attr('disabled', true);
+        $('#FechaIngreso :input').attr('disabled', true);
+        $('#DescripcionRecurso :input').attr('disabled', true);
+        $('#TipoDocumentoReferencia').attr('disabled', true);
+        var cbo = $("#TipoRecurso").val();
+        if (cbo == '302') {
+            $('#TipoDocumentoReferencia').removeAttr('disabled');
+            $('#Descripcion001').removeAttr('disabled');
+            $('#Descripcion002').removeAttr('disabled');
+            $('#Descripcion003').removeAttr('disabled');
+            $('#FechaIngreso').removeAttr('disabled');
+        }
+        if (cbo == '303') {
+            $('#DescripcionRecurso').removeAttr('disabled');
+        }
+    })
+
+    $(".datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
+</script>

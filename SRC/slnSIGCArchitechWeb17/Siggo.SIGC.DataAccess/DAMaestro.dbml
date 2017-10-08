@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SiggoData" Class="DAMaestroDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAP-LENOVO;Initial Catalog=SiggoData;Persist Security Info=True;User ID=usr_siggo" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString2" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_OBTENER_LISTA_MAESTRO" Method="SP_OBTENER_LISTA_MAESTRO">
+    <Parameter Name="CodigoTabla" Parameter="codigoTabla" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_OBTENER_LISTA_MAESTROResult">
+      <Column Name="CodigoTabla" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NombreTabla" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Accion" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FECMAKER" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="HoraRegistro" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="MAKER" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

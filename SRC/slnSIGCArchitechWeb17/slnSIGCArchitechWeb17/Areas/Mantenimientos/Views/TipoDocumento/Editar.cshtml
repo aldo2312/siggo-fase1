@@ -1,0 +1,108 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Mantenimientos.Models.TipoDocumentoWebModel
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+@Html.Hidden("myUrl", Url.Action("Index", "TipoDocumento"))
+
+@if (Model.NuevoRegistro)
+{
+    <h2>Nuevo Tipo Documento</h2>
+}
+else
+{
+    <h2>Editar Tipo Documento : @Model.IdTipoDocumento</h2>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.NuevoRegistro)
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.LabelFor(m => m.IdTipoDocumento)*</td>
+                <td>
+                    @if (Model.NuevoRegistro)
+                    {
+                        @Html.TextBoxFor(m => m.IdTipoDocumento, new { @Value = "?????", style = "width:80px;", disabled = "true" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.IdTipoDocumento, new { style = "width:80px;", disabled = "true" })
+                    }
+                    @Html.HiddenFor(m => m.IdTipoDocumento)
+                    @Html.ValidationMessageFor(m => m.IdTipoDocumento)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Descripcion)*</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Descripcion, new { style = "width:250px;", maxlength = 50 })
+                    @Html.ValidationMessageFor(m => m.Descripcion)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.DescripcionLarga)*</td>
+                <td>
+                    @Html.TextBoxFor(m => m.DescripcionLarga, new { style = "width:450px;", maxlength = 50 })
+                    @Html.ValidationMessageFor(m => m.DescripcionLarga)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.TipoRiesgo) *</td>
+                <td>
+                    @Html.DropDownListFor(m => m.IdTipoRiesgo, new SelectList(Model.lTipoRiesgo, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:220px;" })
+                    @Html.ValidationMessageFor(m => m.IdTipoRiesgo)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.IdNivelRiesgo) *</td>
+                <td>
+                    @Html.DropDownListFor(m => m.IdNivelRiesgo, new SelectList(Model.lNivelRiesgo, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:150px;" })
+                    @Html.ValidationMessageFor(m => m.IdNivelRiesgo)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Tipo Servicio")</td>
+                <td>
+                    @Html.DropDownListFor(m => m.IdTipoServicio, new SelectList(Model.lTipoServicio, "Codigo", "Descripcion"), "(Seleccione)", new { style = "width:220px;" })
+                    @Html.ValidationMessageFor(m => m.IdTipoServicio)
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.Label("Fecha Registro")</td>
+                <td>@Html.TextBoxFor(m => m.FechaMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Hora Registro")</td>
+                <td>@Html.TextBoxFor(m => m.HoraMaker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Registrado Por")</td>
+                <td>@Html.TextBoxFor(m => m.Maker, new { style = "width:80px;", disabled = "true" })</td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <div>
+        <input type="submit" value="Grabar" />
+        <input type="button" value="Cancelar" onclick="return Cancelar();" />
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script type="text/javascript">
+    function Cancelar() {
+        var url = $("#myUrl").val();
+        window.location.href = url;
+    }
+</script>
+

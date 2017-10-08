@@ -1,0 +1,85 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Mantenimientos.Models.TipoDocumentoWebModel
+@{
+    ViewBag.Title = "Administración de Tipos de Documento";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Administración de Tipos de Documento</h2>
+<div>
+    @Html.ActionLink("Crear Tipo de Documento", "Editar", "TipoDocumento")
+
+</div>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Identificador")</td>
+                <td>@Html.TextBox("IdDoc") </td>
+                <td>@Html.Label("Descripción")</td>
+                <td>@Html.TextBox("DescripcionTipoDoc")</td>
+                <td>@Html.Label("Tipo Servicio")</td>
+                <td>@Html.DropDownList("Servicio", null, "(Todos)", new { style = "width:250px;" })</td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Buscar" />
+        <input type="button" value="Limpiar" onclick="Limpiar()" />
+    </fieldset>
+    <br />
+}
+
+@if (Model.lRegistrosTipoDocumento.Count() > 0)
+{
+    WebGrid wbTipoDocumento = new WebGrid(Model.lRegistrosTipoDocumento, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+    if (wbTipoDocumento.SelectedIndex < 0)
+    {
+        wbTipoDocumento.SelectedIndex = 0;
+    }
+    var gridColumnas = new List<WebGridColumn>();
+    gridColumnas.Add(wbTipoDocumento.Column("Identificador", header: "Id", format: (item) => item.GetSelectLink(item.IdTipoDocumento)));
+    gridColumnas.Add(wbTipoDocumento.Column("Descripcion", header: "Descripción", canSort: false, style: ""));
+    gridColumnas.Add(wbTipoDocumento.Column("NivelRiesgo", header: "Riesgo", canSort: false, style: ""));
+    gridColumnas.Add(wbTipoDocumento.Column("TipoRiesgo", header: "TipoRiesgo", canSort: false, style: ""));
+    gridColumnas.Add(wbTipoDocumento.Column("TipoServicio", header: "TipoServicio", canSort: false, style: ""));
+    gridColumnas.Add(wbTipoDocumento.Column("Estado", header: "Estado", canSort: false, style: ""));
+    gridColumnas.Add(wbTipoDocumento.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+    gridColumnas.Add(wbTipoDocumento.Column("Editar", header: "", format: (item) => @Ajax.ActionLink("Modificar", "Editar", "TipoDocumento", new { Id = item.IdTipoDocumento, IdTipoServicio = item.IdTipoServicio }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+    gridColumnas.Add(wbTipoDocumento.Column("Eliminar", header: "", format: (item) => @Html.ActionLink("Eliminar", "Eliminar", new { Id = item.IdTipoDocumento, IdTipoServicio = item.IdTipoServicio }, new { id = "Eliminar", onclick = "return confirm('¿Esta seguro de Eliminar el Tipo Documento " + item.IdTipoDocumento + " ?');" }), canSort: false, style: ""));
+
+    @wbTipoDocumento.GetHtml(
+            rowStyle: "webgrid-row-style",
+            selectedRowStyle: "webgrid-selected-row",
+            htmlAttributes: new { id = "MainTable" },
+
+            mode: WebGridPagerModes.All,
+            firstText: "<< Primera",
+            previousText: "< Anterior",
+            nextText: "Siguiente >",
+            lastText: "Última >>",
+            columns: wbTipoDocumento.Columns(gridColumnas.ToArray())
+        );
+}
+else
+{
+    <div id="No">No existen registros</div>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <br />
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script>
+    function Limpiar() {
+        var txt = document.getElementById('IdDoc'); txt.value = "";
+        var txt = document.getElementById('DescripcionTipoDoc'); txt.value = "";
+        var cbo = document.getElementById('Servicio'); cbo[0].selected = true;  
+    }
+</script>

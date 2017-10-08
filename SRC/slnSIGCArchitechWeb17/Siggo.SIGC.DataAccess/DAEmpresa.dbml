@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SiggoData" Class="DAEmpresaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAP-LENOVO;Initial Catalog=SiggoData;Persist Security Info=True;User ID=usr_siggo" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString2" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_MANT_REG_EMPRESA" Method="SP_MANT_REG_EMPRESA">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEmpresa" Parameter="idEmpresa" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="RazonSocial" Parameter="razonSocial" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PrefijoCorreo" Parameter="prefijoCorreo" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Contacto" Parameter="contacto" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="TipoEmpresa" Parameter="tipoEmpresa" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="RucEmpresa" Parameter="rucEmpresa" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="DiasNotificacionVencimiento" Parameter="diasNotificacionVencimiento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ActividadNormalEspecifica" Parameter="actividadNormalEspecifica" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="TipoEmpresaSiggo" Parameter="tipoEmpresaSiggo" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="IDCliente" Parameter="iDCliente" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="RegistradoPor" Parameter="registradoPor" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_OBTENER_DATOS_EMPRESA" Method="SP_OBTENER_DATOS_EMPRESA">
+    <Parameter Name="IDEMPRESA" Parameter="iDEMPRESA" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="SP_OBTENER_DATOS_EMPRESAResult">
+      <Column Name="IdEmpresa" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="RazonSocial" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PrefijoCorreo" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Contacto" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoEmpresa" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="RucEmpresa" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DiasNotificacionVencimiento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ActividadNormalEspecifica" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TipoEmpresaSiggo" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="IDCliente" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Accion" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FECMAKER" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="HoraRegistro" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="MAKER" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_LISTAR_EMPRESAS" Method="SP_LISTAR_EMPRESAS">
+    <Parameter Name="Identificador" Parameter="identificador" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="NombreEmpresa" Parameter="nombreEmpresa" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoEmpresa" Parameter="tipoEmpresa" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="TipoEmpresaSiggo" Parameter="tipoEmpresaSiggo" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="IDUSUARIO" Parameter="iDUSUARIO" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_LISTAR_EMPRESASResult">
+      <Column Name="IDEMPRESA" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="RAZONSOCIAL" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DIRECCION" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PREFIJOCORREO" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TELEFONO" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CORREO" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="CONTACTO" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TIPOEMPRESA" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DESC_TIPOEMPRESA" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RUCEMPRESA" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DIASNOTIFICACIONVENCIMIENTO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVIDADNORMALESPECIFICA" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TIPOEMPRESASIGGO" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="IDCLIENTE" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="EmpresaAsociada" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ESTADO" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ACCION" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FECHAREGISTRO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HORAREGISTRO" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="REGISTRADOPOR" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

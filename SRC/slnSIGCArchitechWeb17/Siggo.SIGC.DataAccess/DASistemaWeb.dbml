@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SiggoData" Class="DASistemaWebDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAP-LENOVO;Initial Catalog=SiggoData;Persist Security Info=True;User ID=usr_siggo" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString2" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_OBTENER_OPCIONES_MENU_ROL" Method="SP_OBTENER_OPCIONES_MENU_ROL">
+    <Parameter Name="IDUSUARIO" Parameter="iDUSUARIO" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="SP_OBTENER_OPCIONES_MENU_ROLResult">
+      <Column Name="IdMenu" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PreMenu" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionMenu" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="FlagTipo" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Orden" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ActionResult" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="Controller" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Accion" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Accesos" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_OBTENER_ROLES" Method="SP_OBTENER_ROLES">
+    <Parameter Name="IDEMPRESA" Parameter="iDEMPRESA" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="SP_OBTENER_ROLESResult">
+      <Column Name="IdRol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionRol" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Accion" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FECMAKER" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="HoraRegistro" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="MAKER" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

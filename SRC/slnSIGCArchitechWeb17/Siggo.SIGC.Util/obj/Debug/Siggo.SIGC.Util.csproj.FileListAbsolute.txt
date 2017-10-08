@@ -1,0 +1,10 @@
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.Util\bin\Debug\Siggo.SIGC.Util.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.Util\bin\Debug\Siggo.SIGC.Util.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.dll
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.pdb
+c:\users\ajrey\documents\visual studio 2017\Projects\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.csprojResolveAssemblyReference.cache
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\bin\Debug\Siggo.SIGC.Util.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\bin\Debug\Siggo.SIGC.Util.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Debug\Siggo.SIGC.Util.csprojResolveAssemblyReference.cache

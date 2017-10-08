@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SiggoData" Class="DATipoDocumentoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAP-LENOVO;Initial Catalog=SiggoData;Persist Security Info=True;User ID=usr_siggo" SettingsObjectName="Siggo.SIGC.DataAccess.Properties.Settings" SettingsPropertyName="SiggoDataConnectionString3" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.SP_MANT_REG_TIPO_DOCUMENTO" Method="SP_MANT_REG_TIPO_DOCUMENTO">
+    <Parameter Name="Opcion" Parameter="opcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoDocumento" Parameter="idTipoDocumento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="DescripcionLarga" Parameter="descripcionLarga" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoRiesgo" Parameter="idTipoRiesgo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NivelRiesgo" Parameter="nivelRiesgo" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="RegistradoPor" Parameter="registradoPor" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_OBTENER_DATOS_TIPO_DOCUMENTO" Method="SP_OBTENER_DATOS_TIPO_DOCUMENTO">
+    <Parameter Name="IdTipoDocumento" Parameter="idTipoDocumento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_OBTENER_DATOS_TIPO_DOCUMENTOResult">
+      <Column Name="IdTipoDocumento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionLarga" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoServicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoRiesgo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NivelRiesgo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Accion" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FECMAKER" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="HoraRegistro" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="MAKER" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_LISTAR_TIPOS_DOCUMENTOS" Method="SP_LISTAR_TIPOS_DOCUMENTOS">
+    <Parameter Name="Identificador" Parameter="identificador" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IdTipoServicio" Parameter="idTipoServicio" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="SP_LISTAR_TIPOS_DOCUMENTOSResult">
+      <Column Name="IdTipoDocumento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionLarga" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoRiesgo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TipoRiesgo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NivelRiesgo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DescNivelRiesgo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdTipoServicio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Servicio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ESTADO" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ACCION" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FECHAREGISTRO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HORAREGISTRO" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="REGISTRADOPOR" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

@@ -1,0 +1,99 @@
+﻿@model slnSIGCArchitechWeb17.Areas.Registros.Models.RecursoWebModel
+@{
+    ViewBag.Title = "SisGpdWeb - Administración de Empleados";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Administración de Empleados</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Get, null))
+{
+    <div class="Titulo">
+        Empresa: @Model.NombreEmpresaSel
+    </div>
+    <br />
+    <div id="newUser" style="@Html.Raw(String.IsNullOrEmpty(Model.IdEmpresaSel) ? "visibility:hidden" : "")">
+        @Html.ActionLink("Crear Empleado", "EditarEmpleado", "Contratista", null, new { @id = "lnkEmpleado" }) |
+        @Html.ActionLink("Volver", "Index", "Contratista")
+    </div>
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Id.")</td>
+                <td>@Html.TextBox("IdEmpleado") </td>
+                <td>@Html.Label("Nombre")</td>
+                <td>@Html.TextBox("NombreEmpleado")</td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Buscar" />
+        <input type="button" value="Limpiar" />
+    </fieldset>
+    <br />
+    <div>@Html.HiddenFor(m => m.IdEmpresaSel)</div>
+    <div>@Html.HiddenFor(m => m.NombreEmpresaSel)</div>
+}
+@if (Model.lRegistrosRecursos != null)
+{
+    if (Model.lRegistrosRecursos.Count() > 0)
+    {
+        WebGrid wgRecursos = new WebGrid(Model.lRegistrosRecursos, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+        if (wgRecursos.SelectedIndex < 0)
+        {
+            wgRecursos.SelectedIndex = 0;
+        }
+        var gridColumnas = new List<WebGridColumn>();
+        gridColumnas.Add(wgRecursos.Column("IdRecurso", header: "Id", format: (item) => item.GetSelectLink(item.IdRecurso)));
+        gridColumnas.Add(wgRecursos.Column("NumeroReferencia", header: "Nro.Referencia", canSort: false, style: ""));
+        gridColumnas.Add(wgRecursos.Column("Descripcion4", header: "Nombre/Denominación", canSort: false, style: ""));
+        gridColumnas.Add(wgRecursos.Column("DescripcionTipoRecurso", header: "Tipo Recurso", canSort: false, style: ""));
+
+        gridColumnas.Add(wgRecursos.Column("Estado", header: "Estado", canSort: false, style: ""));
+        gridColumnas.Add(wgRecursos.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+        gridColumnas.Add(wgRecursos.Column("Editar", header: "", format: (item) => @Ajax.ActionLink("Modificar", "EditarEmpleado", "Contratista", new { Id = item.IdRecurso, IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.NombreEmpresa }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+        gridColumnas.Add(wgRecursos.Column("Eliminar", header: "", format: (item) => @Html.ActionLink("Eliminar", "EliminarEmpleado", new { Id = item.IdRecurso, IdEmpresaSel = item.IdEmpresa, NombreEmpresaSel = item.NombreEmpresa }, new { id = "Eliminar", onclick = "return confirm('¿Esta seguro de Eliminar el Empleado " + item.IdRecurso + " ?');" }), canSort: false, style: ""));
+
+        @wgRecursos.GetHtml(
+                    rowStyle: "webgrid-row-style",
+                    selectedRowStyle: "webgrid-selected-row",
+                    htmlAttributes: new { id = "MainTable" },
+
+                    mode: WebGridPagerModes.All,
+                    firstText: "<< Primera",
+                    previousText: "< Anterior",
+                    nextText: "Siguiente >",
+                    lastText: "Última >>",
+                    columns: wgRecursos.Columns(gridColumnas.ToArray())
+                );
+
+        if (wgRecursos.HasSelection)
+        {
+            Html.RenderAction("RequisitosEmpleado", "Contratista", new { area = "Registros", IdEmpresaSel = Model.IdEmpresaSel, sIdRecurso = wgRecursos.SelectedRow["IdRecurso"] });
+        }
+    }
+    else
+    {
+        <div id="No">No existen registros</div>
+    }
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <br />
+    <div id="Mensaje">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div id="Error">@ViewBag.Error</div>
+}
+
+<script type="text/javascript">
+
+    $('#lnkEmpleado').click(function () {
+        var IdEmpresaSel = $('#IdEmpresaSel').val();
+        var NombreEmpresaSel = $('#NombreEmpresaSel').val();
+        var url2 = $(this).attr('href') + '?IdEmpresaSel=' + IdEmpresaSel + '&NombreEmpresaSel=' + NombreEmpresaSel;
+        $('#lnkEmpleado').attr('href', url2);
+    });
+</script>

@@ -1,0 +1,5 @@
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\bin\Release\Siggo.SIGC.Util.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\bin\Release\Siggo.SIGC.Util.pdb
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Release\Siggo.SIGC.Util.csprojResolveAssemblyReference.cache
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Release\Siggo.SIGC.Util.dll
+D:\Sistemas\SIGGO\SRC\slnSIGCArchitechWeb17\Siggo.SIGC.Util\obj\Release\Siggo.SIGC.Util.pdb

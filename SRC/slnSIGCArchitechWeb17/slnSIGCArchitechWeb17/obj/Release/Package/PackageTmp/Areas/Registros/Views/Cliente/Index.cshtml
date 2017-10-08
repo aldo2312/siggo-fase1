@@ -1,0 +1,72 @@
+﻿@model  slnSIGCArchitechWeb17.Areas.Registros.Models.EmpresaWebModel
+@{
+    ViewBag.Title = "Administración de Clientes";
+    Layout = "~/Views/Shared/_LayoutSiggo.cshtml";
+}
+
+<h2>Administración de Clientes</h2>
+
+<div>
+    @Html.ActionLink("Crear Cliente", "Editar", "Cliente")
+</div>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <table class="tablaForm">
+            <tr>
+                <td>@Html.Label("Identificador")</td>
+                <td>@Html.TextBox("IdCliente") </td>
+                <td>@Html.Label("Nombre")</td>
+                <td>@Html.TextBox("RazonSocial")</td>
+                <td>@Html.Label("Tipo Empresa")</td>
+                <td>@Html.DropDownList("TipoEmpresa", null, "(Seleccione)", new { style = "width:250px;" })</td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Buscar" />
+        <input type="button" value="Limpiar" />
+    </fieldset>
+    <br />
+}
+
+@if (Model.lRegistrosEmpresas.Count() > 0)
+{
+    WebGrid wbClientes = new WebGrid(Model.lRegistrosEmpresas, selectionFieldName: "SelectedRow", rowsPerPage: 20);
+    if (wbClientes.SelectedIndex < 0)
+    {
+        wbClientes.SelectedIndex = 0;
+    }
+    var gridColumnas = new List<WebGridColumn>();
+    gridColumnas.Add(wbClientes.Column("Identificador", header: "Id", format: (item) => item.GetSelectLink(item.IdEmpresa)));
+    gridColumnas.Add(wbClientes.Column("RazonSocial", header: "Razon Social", canSort: false, style: ""));
+    gridColumnas.Add(wbClientes.Column("TipoEmpresa", header: "Tipo Empresa", canSort: false, style: ""));
+    gridColumnas.Add(wbClientes.Column("RucEmpresa", header: "RUC", canSort: false, style: ""));
+    gridColumnas.Add(wbClientes.Column("Estado", header: "Estado", canSort: false, style: ""));
+    gridColumnas.Add(wbClientes.Column("FechaMaker", header: "F.Registro", canSort: false, style: ""));
+    gridColumnas.Add(wbClientes.Column("Editar", header: "", format: (item) => @Ajax.ActionLink("Modificar", "Editar", "Cliente", new { Id = item.IdEmpresa }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+    gridColumnas.Add(wbClientes.Column("Eliminar", header: "", format: (item) => @Html.ActionLink("Eliminar", "Eliminar", new { Id = item.IdEmpresa }, new { id = "Eliminar", onclick = "return confirm('¿Esta seguro de Eliminar el Cliente " + item.IdEmpresa + " ?');" }), canSort: false, style: ""));
+    gridColumnas.Add(wbClientes.Column("Usuarios", header: "", format: (item) => @Ajax.ActionLink("Ver Usuarios", "Index", "Usuario", new { Area = "", Id = item.IdEmpresa }, new AjaxOptions { HttpMethod = "Get" }, new { id = "Editar" }), canSort: false, style: ""));
+
+    @wbClientes.GetHtml(
+            rowStyle: "webgrid-row-style",
+            selectedRowStyle: "webgrid-selected-row",
+            htmlAttributes: new { id = "MainTable" },
+
+            mode: WebGridPagerModes.All,
+            firstText: "<< Primera",
+            previousText: "< Anterior",
+            nextText: "Siguiente >",
+            lastText: "Última >>",
+            columns: wbClientes.Columns(gridColumnas.ToArray())
+        );
+
+    if (wbClientes.HasSelection)
+    {
+
+    }
+}
+else
+{
+    <div id="No">No existen registros</div>
+}
